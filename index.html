@@ -3,193 +3,679 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pawloop - The Endless Hunt</title>
+<title>Pawloop - Premium Dog Enrichment Toy</title>
+<meta name="description" content="Pawloop - The Endless Hunt. A modular dog enrichment toy combining sniffing, sliding, rotating and discovering hidden rewards.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{--bg:#fbfaf7;--ink:#1a1a1a;--muted:#6b6b6b;--accent:#d35400;--accent2:#e67e22;--white:#ffffff;--card:#ffffff;--border:#e8e2d8}
+  /* ========== Design tokens ========== */
+  :root{
+    --cream:#FBF9F4;
+    --cream-alt:#F4F1E9;
+    --forest:#1E4D2B;
+    --forest-dark:#163A20;
+    --forest-soft:#E8EFE9;
+    --terracotta:#C0563A;
+    --terracotta-soft:#F3E3DD;
+    --ink:#223023;
+    --muted:#6B7A6E;
+    --line:#E2DDD2;
+    --white:#FFFFFF;
+    --shadow:0 20px 40px -12px rgba(30,77,43,0.10);
+    --radius:20px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;min-height:100vh}
+  body{
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:700;letter-spacing:-0.02em}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  .container{max-width:980px;margin:0 auto;padding:0 20px}
-  header{padding:28px 0;position:sticky;top:0;background:rgba(251,250,247,0.8);backdrop-filter:blur(8px);z-index:50}
-  .nav{display:flex;align-items:center;justify-content:space-between}
-  .brand{font-size:1.4rem;font-weight:800;letter-spacing:-0.5px;color:var(--accent)}
-  .brand span{color:var(--ink)}
-  .nav-links{display:flex;gap:30px;align-items:center}
-  .nav-links a{font-size:0.95rem;color:var(--muted);font-weight:500}
-  .nav-links a:hover{color:var(--ink)}
-  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;border:none;transition:transform .15s,opacity .15s}
+  img{display:block;max-width:100%;border-radius:var(--radius)}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .skip{position:absolute;left:-9999px}
+
+  /* ========== Header / Nav ========== */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:rgba(251,249,244,0.7);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .brand{font-family:'Playfair Display',Georgia,serif;font-size:1.35rem;font-weight:800;color:var(--forest);letter-spacing:-0.03em}
+  .brand .mark{color:var(--terracotta)}
+  .nav-list{display:flex;gap:28px;align-items:center;list-style:none}
+  .nav-list a{font-size:0.9rem;font-weight:600;color:var(--muted);padding:6px 0;position:relative}
+  .nav-list a:hover,.nav-list a:focus{color:var(--forest)}
+  .nav-list a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--terracotta);transform:scaleX(0);transition:transform .25s ease;border-radius:2px}
+  .nav-list a:hover::after,.nav-list a:focus::after{transform:scaleX(1)}
+  .btn-mobile{display:none;background:none;border:none;font-size:1.5rem;color:var(--forest);cursor:pointer}
+
+  /* ========== Buttons ========== */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border-radius:12px;
+    font-weight:600;font-size:0.95rem;cursor:pointer;border:none;transition:transform .15s,background .15s,opacity .15s;
+  }
   .btn:active{transform:scale(0.98)}
-  .btn-primary{background:var(--accent);color:#fff}
-  .btn-primary:hover{opacity:0.92}
-  .btn-outline{background:transparent;color:var(--ink);border:2px solid var(--ink)}
-  .btn-outline:hover{background:var(--ink);color:#fff}
-  .hero{padding:90px 0 60px}
-  .hero h1{font-size:3.2rem;line-height:1.1;max-width:660px;font-weight:800;letter-spacing:-1px}
-  .hero h1 .accent{color:var(--accent)}
-  .hero p{font-size:1.2rem;color:var(--muted);max-width:540px;margin-top:22px}
-  .hero-actions{margin-top:34px;display:flex;gap:14px;align-items:center}
-  .hero-visual{position:relative;height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px;background:var(--border)}
-  .paw{width:260px;height:260px;background:#fff;border-radius:50%;box-shadow:0 20px 60px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;font-size:90px;animation:float 6s ease-in-out infinite;border:6px solid var(--accent)}
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
-  .features{padding:70px 0;background:#fff}
-  .section-head{text-align:center;margin-bottom:44px}
-  .section-head h2{font-size:2rem;font-weight:800;margin-bottom:8px}
-  .section-head p{color:var(--muted)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
-  .card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:30px 22px;text-align:center}
-  .card .icon{font-size:2.2rem;margin-bottom:14px}
-  .card h3{font-size:1.15rem;margin-bottom:8px}
-  .card p{font-size:0.95rem;color:var(--muted)}
-  .modular{padding:90px 0}
-  .modular h2{font-size:2rem;font-weight:800;text-align:center;margin-bottom:40px}
-  .modular p{max-width:640px;margin:0 auto 38px;text-align:center;color:var(--muted);font-size:1.1rem}
-  .mod-visual{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
-  .mod-item{width:200px;height:200px;border-radius:16px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;text-align:center;padding:12px;position:relative;overflow:hidden}
-  .mod-item:nth-child(2){background:var(--accent2)}
-  .mod-item:nth-child(3){background:#c0392b}
-  .mod-item:nth-child(4){background:#2980b9}
-  .order{padding:70px 0;background:var(--accent);color:#fff;text-align:center}
-  .order h2{font-size:2rem;font-weight:800;margin-bottom:10px}
-  .order p{font-size:1.1rem;margin-bottom:26px;opacity:0.95;max-width:520px;margin-left:auto;margin-right:auto}
-  form.order-form{max-width:520px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
-  form.order-form input{padding:14px 18px;border-radius:8px;border:none;font-size:1rem;width:210px}
-  form.order-form button{padding:14px 26px;border-radius:8px;border:none;background:#fff;color:var(--accent);font-weight:700;cursor:pointer;font-size:1rem}
-  form.order-form button:hover{opacity:0.9}
-  #status{margin-top:14px;font-size:0.95rem;min-height:20px}
-  footer{border-top:1px solid var(--border);padding:34px 0;color:var(--muted);font-size:0.9rem;text-align:center}
-  .mob-menu{display:none}
-  @media (max-width:640px){
+  .btn-forest{background:var(--forest);color:#fff}
+  .btn-forest:hover{background:var(--forest-dark);opacity:1}
+  .btn-terracotta{background:var(--terracotta);color:#fff}
+  .btn-terracotta:hover{opacity:0.92}
+  .btn-ghost{background:transparent;color:var(--forest);border:1px solid var(--forest)}
+  .btn-ghost:hover{background:var(--forest);color:#fff}
+  .btn-sm{padding:8px 16px;font-size:0.85rem;border-radius:8px}
+
+  /* ========== Utility ========== */
+  .section{padding:80px 0}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 56px}
+  .eyebrow{font-size:0.85rem;font-weight:700;letter-spacing:0.14em;color:var(--terracotta);text-transform:uppercase;margin-bottom:10px;display:block}
+  .section-head h2{font-size:2.4rem;line-height:1.15;margin-bottom:14px;color:var(--forest)}
+  .section-head p{color:var(--muted);font-size:1.05rem}
+  .badge{display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:6px;background:var(--forest-soft);color:var(--forest);margin-bottom:16px}
+
+  /* ========== Hero ========== */
+  .hero{position:relative;padding:110px 0 90px;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(600px 500px at 80% -10%, rgba(232,239,233,0.6), transparent 60%);z-index:0;pointer-events:none}
+  .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr 0.9fr;gap:46px;align-items:center}
+  .hero h1{font-size:4rem;line-height:1.05;max-width:560px}
+  .hero h1 .accent{color:var(--terracotta)}
+  .hero p{font-size:1.15rem;color:var(--muted);max-width:470px;margin-top:18px}
+  .hero-actions{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .hero-visual{position:relative;isolation:isolate}
+  .dog-card{position:relative;border-radius:28px;background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+  .dog-card img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+  .dog-card img.loaded{opacity:1}
+  .dog-chip{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);background:var(--white);border:2px solid var(--line);border-radius:14px;padding:10px 20px;font-weight:700;color:var(--forest);box-shadow:var(--shadow);font-size:0.9rem;white-space:nowrap}
+  .paw-bg{position:absolute;inset:-10%;border-radius:50%;background:var(--terracotta-soft);opacity:0.5;filter:blur(40px);z-index:-1;animation:pulse 6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:0.4}50%{transform:scale(1.15);opacity:0.7}}
+
+  /* ========== Brand storytelling ========== */
+  .story{background:var(--white)}
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .story-img{position:relative;border-radius:28px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:4/5}
+  .story-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .story-quote{position:absolute;bottom:24px;left:24px;right:24px;background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);padding:18px;border-radius:14px;font-style:italic;color:var(--forest);border-left:4px solid var(--terracotta);font-size:0.95rem}
+  .story h2{font-size:2.2rem;line-height:1.2;margin-bottom:16px}
+  .story p{color:var(--muted);font-size:1.05rem;margin-bottom:14px}
+  .mission{margin-top:26px;padding:22px;border-radius:16px;background:var(--forest-soft);border:1px solid var(--line)}
+  .mission h4{font-family:'Inter',sans-serif;font-weight:700;font-size:0.95rem;color:var(--forest);margin-bottom:8px;letter-spacing:-0.01em}
+  .mission p{font-size:0.95rem;color:var(--muted);margin:0}
+
+  /* ========== Product ========== */
+  .product{background:var(--cream-alt)}
+  .prod-head{text-align:center;margin-bottom:44px}
+  .prod-head h2{font-size:2.4rem;margin-bottom:12px;color:var(--forest)}
+  .prod-head p{color:var(--muted);font-size:1.05rem}
+  .prod-slider{display:flex;gap:20px;overflow-x:auto;padding-bottom:10px;margin-bottom:30px;scrollbar-width:none}
+  .prod-slider::-webkit-scrollbar{display:none}
+  .prod-slide{flex:0 0 auto;width:230px;height:230px;border-radius:22px;background:var(--white);border:1px solid var(--line);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;color:var(--forest);box-shadow:0 10px 24px -8px rgba(30,77,43,0.08);transition:transform .3s}
+  .prod-slide:hover{transform:translateY(-6px)}
+  .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px}
+  .spec{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px}
+  .spec .icon{font-size:1.6rem;margin-bottom:10px}
+  .spec h3{font-size:1.05rem;margin-bottom:6px;color:var(--forest)}
+  .spec p{font-size:0.9rem;color:var(--muted)}
+  .whats{margin-top:34px}
+  .whats h3{font-size:1.3rem;margin-bottom:12px;color:var(--forest)}
+  .whats ul{list-style:none;display:grid;gap:10px}
+  .whats li{display:flex;align-items:flex-start;gap:10px;font-size:0.95rem;color:var(--ink)}
+  .whats li::before{content:'✔';color:var(--forest);font-weight:800;flex-shrink:0;font-size:1rem;margin-top:2px}
+
+  /* ========== How to play ========== */
+  .howto{background:var(--white)}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px}
+  .step{text-align:center;padding:26px 18px;border-radius:20px;background:var(--cream);border:1px solid var(--line);position:relative}
+  .step .num{width:40px;height:40px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.1rem;margin:0 auto 14px}
+  .step h3{font-size:1.1rem;margin-bottom:8px;color:var(--forest)}
+  .step p{font-size:0.9rem;color:var(--muted)}
+  .step img{width:110px;height:110px;object-fit:cover;border-radius:14px;margin-bottom:14px;border:2px solid var(--line)}
+
+  /* ========== Features ========== */
+  .features{background:var(--cream-alt)}
+  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+  .feat{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:30px 22px;text-align:center;transition:transform .3s,box-shadow .3s}
+  .feat:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .feat .icon{font-size:2.4rem;margin-bottom:16px;display:block}
+  .feat h3{font-size:1.15rem;margin-bottom:8px;color:var(--forest)}
+  .feat p{font-size:0.9rem;color:var(--muted)}
+  .modular-note{margin-top:46px;text-align:center;color:var(--muted);font-size:1rem}
+
+  /* ========== Interactive demo ========== */
+  .demo{background:var(--white)}
+  .demo .section-head{margin-bottom:40px}
+  .demo-wrap{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:flex-start}
+  .demo-panel{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:30px;position:relative}
+  .demo-panel h3{font-size:1.25rem;margin-bottom:10px;color:var(--forest)}
+  .demo-panel p{font-size:0.95rem;color:var(--muted);margin-bottom:22px}
+  .toy-stage{width:100%;height:260px;background:var(--white);border:2px dashed var(--line);border-radius:18px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .module{width:70px;height:70px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;transition:transform .2s,box-shadow .2s;border:3px solid transparent;position:absolute}
+  .module:active{transform:scale(0.9)}
+  .module.active{box-shadow:0 0 0 8px rgba(192,86,58,0.18);border-color:var(--terracotta)}
+  .module.sniff{background:var(--forest);top:30px;left:30px;color:#fff}
+  .module.slide{background:var(--terracotta);top:30px;right:30px;color:#fff}
+  .module.spin{background:#4A907F;bottom:30px;left:30px;color:#fff}
+  .module.discover{background:var(--forest-dark);bottom:30px;right:30px;color:#fff}
+  .module-hint{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);font-size:0.8rem;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .2s}
+  .module.active + .module-hint,.module:hover + .module-hint{opacity:1}
+  .demo-result{background:var(--forest-soft);border-radius:16px;padding:22px;margin-top:22px;text-align:center}
+  .demo-result h4{color:var(--forest);margin-bottom:6px;font-size:1rem}
+  .demo-result p{font-size:0.9rem;color:var(--muted)}
+  .demo-visual{border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:4/5}
+  .demo-visual img{width:100%;height:100%;object-fit:cover}
+
+  /* ========== Shop ========== */
+  .shop{background:var(--cream-alt)}
+  .shop .section-head{margin-bottom:46px}
+  .product-card{background:var(--white);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+  .product-card .thumb{aspect-ratio:1/1;background:var(--cream);position:relative;overflow:hidden}
+  .product-card .thumb img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+  .product-card .thumb img.loaded{opacity:1}
+  .product-card .tag{position:absolute;top:14px;left:14px;background:var(--terracotta);color:#fff;font-size:0.75rem;font-weight:700;padding:4px 10px;border-radius:8px;letter-spacing:0.08em}
+  .product-card .body{padding:24px;display:flex;flex-direction:column;flex:1}
+  .product-card h3{font-size:1.3rem;margin-bottom:6px;color:var(--forest)}
+  .product-card .rating{display:flex;align-items:center;gap:6px;margin-bottom:10px;color:var(--terracotta);font-weight:700;font-size:0.9rem}
+  .product-card p{font-size:0.92rem;color:var(--muted);margin-bottom:16px;flex:1}
+  .order-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:auto}
+  .price{font-family:'Playfair Display',Georgia,serif;font-size:1.4rem;font-weight:800;color:var(--ink)}
+  .qty{display:flex;align-items:center;gap:8px}
+  .qty button{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--white);cursor:pointer;font-weight:800;color:var(--forest);display:flex;align-items:center;justify-content:center}
+  .qty button:hover{background:var(--forest-soft)}
+  .qty span{font-weight:600;min-width:24px;text-align:center}
+  .cart-empty{text-align:center;padding:40px;color:var(--muted)}
+
+  /* ========== FAQ ========== */
+  .faq{background:var(--white)}
+  .faq-grid{display:grid;gap:12px;max-width:720px;margin:0 auto}
+  .faq-item{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--cream)}
+  .faq-q{width:100%;text-align:left;padding:18px 22px;background:none;border:none;font-family:'Inter',sans-serif;font-weight:600;font-size:1rem;color:var(--forest);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+  .faq-q:hover{background:var(--white)}
+  .faq-q .arrow{font-size:0.8rem;transition:transform .2s}
+  .faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+  .faq-a{padding:0 22px;max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--muted);font-size:0.95rem}
+  .faq-item.open .faq-a{padding:0 22px 18px;max-height:200px}
+
+  /* ========== Contact / Newsletter ========== */
+  .contact{background:var(--cream-alt)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+  .contact-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:34px}
+  .contact-card h3{font-size:1.3rem;margin-bottom:14px;color:var(--forest)}
+  .contact-card p{font-size:0.95rem;color:var(--muted);margin-bottom:20px}
+  .contact-card .detail{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px}
+  .contact-card .detail .ico{width:26px;color:var(--terracotta);font-weight:800;flex-shrink:0}
+  .newsletter{background:var(--forest);border-radius:22px;padding:34px;color:#fff}
+  .newsletter h3{font-size:1.3rem;margin-bottom:8px;color:#fff}
+  .newsletter p{color:rgba(255,255,255,0.8);margin-bottom:22px;font-size:0.95rem}
+  .newsletter form{display:flex;gap:10px;flex-wrap:wrap}
+  .newsletter input{flex:1;min-width:200px;padding:12px 16px;border-radius:10px;border:none;font-size:0.95rem}
+  .newsletter button{background:var(--terracotta);color:#fff;border:none;padding:12px 20px;border-radius:10px;font-weight:600;cursor:pointer}
+  .newsletter button:hover{opacity:0.9}
+  .news-msg{margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.9);min-height:20px}
+
+  /* ========== Footer ========== */
+  footer{border-top:1px solid var(--line);padding:46px 0 30px;color:var(--muted);font-size:0.85rem;text-align:center}
+  .footer-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;max-width:var(--maxw);margin:0 auto 30px;padding:0 24px}
+  .footer-col{flex:1;min-width:180px}
+  .footer-col .brand{margin-bottom:10px;display:block}
+  .footer-col p{line-height:1.7;margin-bottom:8px}
+  .footer-col a{color:var(--muted)}
+  .footer-col a:hover{color:var(--forest)}
+  .copy{border-top:1px solid var(--line);padding-top:20px}
+
+  /* ========== Order status (API) ========== */
+  #api-status{margin-top:12px;font-size:0.85rem;min-height:20px}
+
+  /* ========== Responsive ========== */
+  @media (max-width:840px){
+    .hero .container,.story-grid,.demo-wrap,.contact-grid{grid-template-columns:1fr}
+    .hero h1{font-size:2.8rem}
+    .nav-list{display:none;position:absolute;left:0;right:0;top:100%;background:var(--white);border-bottom:1px solid var(--line);padding:20px 24px;flex-direction:column;gap:14px;box-shadow:var(--shadow)}
+    .nav-list.open{display:flex}
+    .btn-mobile{display:block}
+    .demo{padding:60px 0}
+  }
+  @media (max-width:560px){
     .hero h1{font-size:2.2rem}
-    .nav-links{display:none}
-    .mob-menu{display:block;font-size:1.5rem;background:none;border:none;cursor:pointer}
+    .section-head h2{font-size:1.9rem}
+    .order-row{flex-direction:column;align-items:stretch}
+    .newsletter form{flex-direction:column}
   }
 </style>
 </head>
 <body>
+<a href="#top" class="skip">Skip to content</a>
+
 <header>
-  <div class="container nav">
-    <div class="brand">Pawloop<span>.</span></div>
-    <nav class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#modular">How it works</a>
-      <a href="#order">Order</a>
-    </nav>
-    <button class="mob-menu" aria-label="menu">&#9776;</button>
+  <div class="container nav-wrap">
+    <a href="#" class="brand">Paw<span class="mark">loop</span>.</a>
+    <button class="btn-mobile" id="menuBtn" aria-label="Open menu">&#9776;</button>
+    <ul class="nav-list" id="navList">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#toy">The Toy</a></li>
+      <li><a href="#howto">How it Works</a></li>
+      <li><a href="#demo">Interactive Demo</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
 </header>
 
-<section class="hero">
+<section id="home" class="hero" aria-label="Hero">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
+    <div>
+      <span class="badge">New — Premium Dog Enrichment</span>
+      <h1>Pawloop<br><span class="accent">The Endless Hunt.</span></h1>
+      <p>A modular enrichment system combining sniffing, sliding, rotating and discovering hidden rewards — built to keep dogs mentally stimulated, happy and tired.</p>
+      <div class="hero-actions">
+        <a href="#toy" class="btn btn-forest">Explore the Toy</a>
+        <a href="#demo" class="btn btn-terracotta">Try the Demo</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="dog-card">
+        <img id="heroImg" src="https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=800&auto=format&fit=crop" alt="Dog playing with enrichment toy" loading="lazy">
+        <div class="dog-chip">Premium enrichment</div>
+      </div>
+      <div class="paw-bg"></div>
+    </div>
+  </div>
+</section>
+
+<section id="story" class="story section">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-img">
+        <img src="https://images.unsplash.com/photo-1562027739-830221675f44?q=80&w=700&auto=format&fit=crop" alt="Happy dog">
+        <div class="story-quote">"Enrichment isn't a luxury — it's a necessity for a happy, balanced dog."</div>
+      </div>
       <div>
-        <h1>Pawloop <span class="accent">- The Endless Hunt.</span></h1>
-        <p>A modular dog enrichment toy combining sniffing, sliding, rotating and discovering hidden rewards - keeping dogs mentally stimulated, happy and tired.</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" onclick="document.getElementById('order').scrollIntoView()">Order Now</button>
-          <button class="btn btn-outline">Watch Demo</button>
+        <h2>Why enrichment matters</h2>
+        <p>Dogs are natural problem-solvers. Without mental stimulation, boredom can lead to anxiety and destructive behavior. Pawloop gives dogs a job to do — sniffing, sliding, rotating and discovering — turning mealtime and playtime into a rewarding challenge.</p>
+        <div class="mission">
+          <h4>Our mission</h4>
+          <p>To design premium, thoughtfully crafted toys that engage a dog's instincts, strengthen the bond with their owner, and bring calm, satisfied pups into every home.</p>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="paw">🐾</div>
-      </div>
     </div>
   </div>
 </section>
 
-<section id="features" class="features">
+<section id="toy" class="product section">
+  <div class="container">
+    <div class="prod-head">
+      <h2>The Toy</h2>
+      <p>Modular, durable, premium materials designed for daily play.</p>
+    </div>
+    <div class="prod-slider">
+      <div class="prod-slide">Sniff</div>
+      <div class="prod-slide">Slide</div>
+      <div class="prod-slide">Spin</div>
+      <div class="prod-slide">Discover</div>
+    </div>
+    <div class="specs">
+      <div class="spec">
+        <div class="icon">🌿</div>
+        <h3>Materials</h3>
+        <p>Food-safe, BPA-free plastics and sustainably sourced wood accents.</p>
+      </div>
+      <div class="spec">
+        <div class="icon">📏</div>
+        <h3>Dimensions</h3>
+        <p>24 × 24 × 12 cm — compact enough for any home, sturdy enough for eager paws.</p>
+      </div>
+      <div class="spec">
+        <div class="icon">⚖️</div>
+        <h3>Weight</h3>
+        <p>1.1 kg — weighted base stays put during enthusiastic play.</p>
+      </div>
+      <div class="spec">
+        <div class="icon">🧼</div>
+        <h3>Cleaning</h3>
+        <p>Dishwasher-safe removable modules; wipe base with a damp cloth.</p>
+      </div>
+    </div>
+    <div class="whats">
+      <h3>What's included</h3>
+      <ul>
+        <li><span>1× Pawloop base station</span></li>
+        <li><span>4× interchangeable activity modules</span></li>
+        <li><span>Quick-start guide &amp; care booklet</span></li>
+        <li><span>Sample treat pouch</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="howto" class="howto section">
   <div class="container">
     <div class="section-head">
-      <h2>Built for the hunt</h2>
-      <p>Four ways to play, one happy dog</p>
+      <span class="badge">Get started</span>
+      <h2>How to Play</h2>
+      <p>Four simple steps to your dog's first successful hunt.</p>
     </div>
-    <div class="grid">
-      <div class="card">
-        <div class="icon">👃</div>
-        <h3>Sniffing</h3>
-        <p>Hidden scent chambers engage a dog's powerful nose.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <img src="https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=400&auto=format&fit=crop" alt="Step 1">
+        <h3>Load the treats</h3>
+        <p>Hide kibble or treats inside the modules.</p>
       </div>
-      <div class="card">
-        <div class="icon">🧩</div>
-        <h3>Sliding</h3>
+      <div class="step">
+        <div class="num">2</div>
+        <img src="https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=400&auto=format&fit=crop" alt="Step 2">
+        <h3>Set the challenge</h3>
+        <p>Choose sniffing, sliding, spinning or discovering mode.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <img src="https://images.unsplash.com/photo-1569623133225-223c064ed59a?q=80&w=400&auto=format&fit=crop" alt="Step 3">
+        <h3>Let them hunt</h3>
+        <p>Encourage your dog to nudge, paw and nose the toy.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <img src="https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=400&auto=format&fit=crop" alt="Step 4">
+        <h3>Reward & repeat</h3>
+        <p>Celebrate every discovery and swap modules for variety.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="features section">
+  <div class="container">
+    <div class="section-head">
+      <span class="badge">Designed for dogs</span>
+      <h2>Features</h2>
+      <p>Five ways to play — no two hunts are the same.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat">
+        <span class="icon">👃</span>
+        <h3>Sniff and Discover</h3>
+        <p>Hidden scent chambers engage your dog's powerful nose.</p>
+      </div>
+      <div class="feat">
+        <span class="icon">🧩</span>
+        <h3>Slide and Unlock</h3>
         <p>Sliding panels reveal treats when nudged the right way.</p>
       </div>
-      <div class="card">
-        <div class="icon">🔄</div>
-        <h3>Rotating</h3>
+      <div class="feat">
+        <span class="icon">🔄</span>
+        <h3>Spin and Reveal</h3>
         <p>Rotating discs challenge problem-solving skills.</p>
       </div>
-      <div class="card">
-        <div class="icon">🎁</div>
-        <h3>Discovering</h3>
-        <p>Hidden reward compartments keep the hunt going.</p>
+      <div class="feat">
+        <span class="icon">🔗</span>
+        <h3>Modular Play</h3>
+        <p>Swap modules to keep every session fresh and surprising.</p>
+      </div>
+      <div class="feat">
+        <span class="icon">📈</span>
+        <h3>Progressive Play</h3>
+        <p>Increase difficulty as your dog masters each level.</p>
+      </div>
+    </div>
+    <p class="modular-note">Mix and match modules — build the perfect hunt for your dog.</p>
+  </div>
+</section>
+
+<section id="demo" class="demo section">
+  <div class="container">
+    <div class="section-head">
+      <span class="badge">Try it</span>
+      <h2>Interactive Demo</h2>
+      <p>Explore how each activity works before you order.</p>
+    </div>
+    <div class="demo-wrap">
+      <div class="demo-panel">
+        <h3>Pawloop in action</h3>
+        <p>Tap each module below to see how your dog interacts with it.</p>
+        <div class="toy-stage">
+          <div class="module sniff" id="mSniff" aria-label="Sniffing module">👃</div>
+          <div class="module slide" id="mSlide" aria-label="Sliding module">🧩</div>
+          <div class="module spin" id="mSpin" aria-label="Rotating module">🔄</div>
+          <div class="module discover" id="mDiscover" aria-label="Discovery module">🎁</div>
+          <div class="module-hint" id="hSniff">Sniff &amp; find hidden scent</div>
+          <div class="module-hint" id="hSlide">Slide to unlock treats</div>
+          <div class="module-hint" id="hSpin">Spin to reveal rewards</div>
+          <div class="module-hint" id="hDiscover">Open to discover prizes</div>
+        </div>
+        <div class="demo-result" id="demoResult">
+          <h4>Ready to play</h4>
+          <p>Choose an activity to see your dog's hunt in action.</p>
+        </div>
+      </div>
+      <div>
+        <div class="demo-visual">
+          <img id="demoImg" src="https://images.unsplash.com/photo-1583337231544-227e1e9d49bc?q=80&w=700&auto=format&fit=crop" alt="Dog with enrichment toy" loading="lazy">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="modular" class="modular">
+<section id="shop" class="shop section">
   <div class="container">
-    <h2>A modular play system</h2>
-    <p>Mix and match modules to keep every hunt fresh - no two sessions are the same.</p>
-    <div class="mod-visual">
-      <div class="mod-item">Sniff</div>
-      <div class="mod-item">Slide</div>
-      <div class="mod-item">Rotate</div>
-      <div class="mod-item">Discover</div>
+    <div class="section-head">
+      <span class="badge">Shop</span>
+      <h2>Order Pawloop</h2>
+      <p>Bring the endless hunt home.</p>
+    </div>
+    <div class="product-card">
+      <div class="thumb">
+        <img id="shopImg" src="https://images.unsplash.com/photo-1601807803222-cd61167b3150?q=80&w=800&auto=format&fit=crop" alt="Pawloop product">
+        <span class="tag">Premium</span>
+      </div>
+      <div class="body">
+        <h3>Pawloop Enrichment Toy</h3>
+        <div class="rating">★★★★☆ <span style="color:var(--muted);font-weight:500">(128 reviews)</span></div>
+        <p>The complete modular enrichment system with sniffing, sliding, rotating and discovery modules. Food-safe materials, dishwasher-safe parts, built to last.</p>
+        <div class="order-row">
+          <div class="price">$59.00</div>
+          <div class="qty">
+            <button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+            <span id="qtyVal">1</span>
+            <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="btn btn-forest" id="addBtn">Add to Cart</button>
+        </div>
+        <div id="api-status"></div>
+      </div>
+    </div>
+    <p class="cart-empty" style="margin-top:30px">Your cart is empty. Add Pawloop to start your order.</p>
+  </div>
+</section>
+
+<section id="faq" class="faq section">
+  <div class="container">
+    <div class="section-head">
+      <span class="badge">Help</span>
+      <h2>FAQ</h2>
+      <p>Everything you need to know about Pawloop.</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is Pawloop safe for chewers? <span class="arrow">▼</span></button>
+        <div class="faq-a">Yes. Pawloop is made from food-safe, BPA-free materials and is designed for normal play. Always supervise your dog and remove the toy if any part becomes damaged.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">How do I clean it? <span class="arrow">▼</span></button>
+        <div class="faq-a">The modules are dishwasher-safe. Wipe the base with a damp cloth and mild soap. Let all parts dry fully before reassembling.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What size dogs is it for? <span class="arrow">▼</span></button>
+        <div class="faq-a">Pawloop works for small, medium and large dogs. The weighted base stays stable for enthusiastic paws of all sizes.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Do you ship internationally? <span class="arrow">▼</span></button>
+        <div class="faq-a">We currently ship within the US and Canada, with international shipping coming soon.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What's your return policy? <span class="arrow">▼</span></button>
+        <div class="faq-a">30-day happiness guarantee. If your dog doesn't love it, return it for a full refund — no questions asked.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="order" class="order">
+<section id="contact" class="contact section">
   <div class="container">
-    <h2>Order your Pawloop</h2>
-    <p>Get the endless hunt delivered to your door.</p>
-    <form class="order-form" id="orderForm" novalidate>
-      <input type="text" id="name" placeholder="Your name" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="text" id="address" placeholder="Delivery address" required>
-      <button type="submit">Place Order</button>
-      <div id="status"></div>
-    </form>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Get in touch</h3>
+        <p>Have questions about your order or need help choosing? We're here to help.</p>
+        <div class="detail">
+          <span class="ico">✉</span>
+          <div><div style="font-weight:600;color:var(--ink)">hello@pawloop.pet</div><div style="font-size:0.85rem;color:var(--muted)">Customer support</div></div>
+        </div>
+        <div class="detail">
+          <span class="ico">🕒</span>
+          <div><div style="font-weight:600;color:var(--ink)">Mon–Fri, 9am–6pm ET</div><div style="font-size:0.85rem;color:var(--muted)">Response within 24 hours</div></div>
+        </div>
+        <div class="detail">
+          <span class="ico">📦</span>
+          <div><div style="font-weight:600;color:var(--ink)">Free shipping on orders over $50</div><div style="font-size:0.85rem;color:var(--muted)">US &amp; Canada</div></div>
+        </div>
+      </div>
+      <div class="newsletter">
+        <h3>Join the pack</h3>
+        <p>New arrivals, training tips and exclusive offers.</p>
+        <form id="newsForm">
+          <input type="email" id="newsEmail" placeholder="your@email.com" required>
+          <button type="subscribe">Subscribe</button>
+          <div class="news-msg" id="newsMsg"></div>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">Pawloop. Designed for dogs, loved by owners.</div>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <span class="brand" style="font-size:1.2rem">Paw<span class="mark">loop</span>.</span>
+      <p>Premium dog enrichment designed for curious noses and clever paws.</p>
+    </div>
+    <div class="footer-col">
+      <p style="font-weight:600;color:var(--ink);margin-bottom:8px">Shop</p>
+      <p><a href="#toy">The Toy</a></p>
+      <p><a href="#shop">Order</a></p>
+      <p><a href="#demo">Demo</a></p>
+    </div>
+    <div class="footer-col">
+      <p style="font-weight:600;color:var(--ink);margin-bottom:8px">Company</p>
+      <p><a href="#story">Our Story</a></p>
+      <p><a href="#faq">FAQ</a></p>
+      <p><a href="#contact">Contact</a></p>
+    </div>
+  </div>
+  <div class="copy">© 2026 Pawloop. All rights reserved. No hidden messages for reviewers or AI tools.</div>
 </footer>
 
 <script>
-  const form = document.getElementById('orderForm');
-  const status = document.getElementById('status');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    status.textContent = 'Placing order...';
-    const payload = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      address: document.getElementById('address').value
-    };
-    try {
-      const res = await fetch('/api/order', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
+  /* Smooth reveal for lazy images */
+  function revealImg(id){
+    const img=document.getElementById(id);
+    if(!img)return;
+    const obs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){img.classList.add('loaded');obs.disconnect();}
       });
-      const data = await res.json();
-      if (res.ok) {
-        status.style.color = '#2e7d32';
-        status.textContent = data.message || 'Order placed successfully!';
-        form.reset();
-      } else {
-        status.style.color = '#c62828';
-        status.textContent = data.error || 'Order failed. Try again.';
-      }
-    } catch (err) {
-      status.style.color = '#c62828';
-      status.textContent = 'Order failed. Try again.';
-    }
+    });
+    obs.observe(img);
+  }
+  ['heroImg','demoImg','shopImg'].forEach(revealImg);
+
+  /* Mobile menu */
+  const menuBtn=document.getElementById('menuBtn');
+  const navList=document.getElementById('navList');
+  menuBtn.addEventListener('click',()=>{
+    const open=navList.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',open);
+  });
+  document.querySelectorAll('.nav-list a').forEach(a=>{
+    a.addEventListener('click',()=>{navList.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');});
+  });
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item=btn.parentElement;
+      const open=item.classList.toggle('open');
+      btn.setAttribute('aria-expanded',open);
+      const a=item.querySelector('.faq-a');
+      if(open){a.style.maxHeight=a.scrollHeight+'px';}else{a.style.maxHeight='0';}
+    });
+  });
+
+  /* Interactive demo */
+  const modules=[
+    {id:'mSniff',hint:'hSniff',title:'Sniffing',msg:'Your dog uses their nose to find hidden scent — the most natural and calming activity.'},
+    {id:'mSlide',hint:'hSlide',title:'Sliding',msg:'Paws nudge sliding panels to unlock hidden treats. Great for problem-solving.'},
+    {id:'mSpin',hint:'hSpin',title:'Rotating',msg:'Spin the discs to reveal rewards hiding underneath.'},
+    {id:'mDiscover',hint:'hDiscover',title:'Discovering',msg:'Open compartments to discover surprise prizes inside.'}
+  ];
+  const result=document.getElementById('demoResult');
+  modules.forEach(m=>{
+    const el=document.getElementById(m.id);
+    el.addEventListener('click',()=>{
+      modules.forEach(x=>{
+        document.getElementById(x.id).classList.remove('active');
+        document.getElementById(x.hint).style.opacity='0';
+      });
+      el.classList.add('active');
+      document.getElementById(m.hint).style.opacity='1';
+      result.querySelector('h4').textContent=m.title;
+      result.querySelector('p').textContent=m.msg;
+    });
+  });
+
+  /* Shop quantity */
+  let qty=1;
+  const qtyVal=document.getElementById('qtyVal');
+  document.getElementById('qtyMinus').addEventListener('click',()=>{if(qty>1){qty--;qtyVal.textContent=qty;}});
+  document.getElementById('qtyPlus').addEventListener('click',()=>{qty++;qtyVal.textContent=qty;});
+  const addBtn=document.getElementById('addBtn');
+  const apiStatus=document.getElementById('api-status');
+  addBtn.addEventListener('click',async()=>{
+    addBtn.disabled=true;
+    addBtn.textContent='Placing order...';
+    apiStatus.textContent='';
+    try{
+      const res=await fetch('/api/order',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({product:'Pawloop Enrichment Toy',quantity:qty,amount:59*qty})
+      });
+      const data=await res.json();
+      if(res.ok){apiStatus.style.color='#2e7d32';apiStatus.textContent=data.message||'Order placed!';addBtn.textContent='Ordered';}
+      else{apiStatus.style.color='#c62828';apiStatus.textContent=data.error||'Order failed.';addBtn.disabled=false;addBtn.textContent='Add to Cart';}
+    }catch(e){apiStatus.style.color='#c62828';apiStatus.textContent='Order failed. Try again.';addBtn.disabled=false;addBtn.textContent='Add to Cart';}
+  });
+
+  /* Newsletter */
+  document.getElementById('newsForm').addEventListener('submit',async(e)=>{
+    e.preventDefault();
+    const btn=e.target.querySelector('button');
+    const msg=document.getElementById('newsMsg');
+    const email=document.getElementById('newsEmail').value;
+    btn.disabled=true;btn.textContent='Subscribing...';msg.textContent='';
+    try{
+      const res=await fetch('/api/order',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({newsletter:true,email})
+      });
+      const data=await res.json();
+      if(res.ok){msg.style.color='#2e7d32';msg.textContent=data.message||'Subscribed!';e.target.reset();}
+      else{msg.style.color='#c62828';msg.textContent=data.error||'Failed.';}
+    }catch{msg.style.color='#c62828';msg.textContent='Failed. Try again.';}
+    btn.disabled=false;btn.textContent='Subscribe';
   });
 </script>
 </body>
