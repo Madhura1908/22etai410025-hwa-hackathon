@@ -115,6 +115,8 @@
   .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px}
   .spec{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px}
   .spec .icon{font-size:1.6rem;margin-bottom:10px}
+  .spec-img{width:48px;height:48px;margin:0 auto 10px;border-radius:10px}
+  .feat-img{width:72px;height:72px;margin:0 auto 16px;border-radius:12px}
   .spec h3{font-size:1.05rem;margin-bottom:6px;color:var(--forest)}
   .spec p{font-size:0.9rem;color:var(--muted)}
   .whats{margin-top:34px}
@@ -150,7 +152,7 @@
   .demo-panel h3{font-size:1.25rem;margin-bottom:10px;color:var(--forest)}
   .demo-panel p{font-size:0.95rem;color:var(--muted);margin-bottom:22px}
   .toy-stage{width:100%;height:260px;background:var(--white);border:2px dashed var(--line);border-radius:18px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .module{width:70px;height:70px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;cursor:pointer;transition:transform .2s,box-shadow .2s;border:3px solid transparent;position:absolute}
+  .module{width:70px;height:70px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:0;cursor:pointer;transition:transform .2s,box-shadow .2s;border:3px solid transparent;position:absolute;background-size:cover;background-position:center}
   .module:active{transform:scale(0.9)}
   .module.active{box-shadow:0 0 0 8px rgba(192,86,58,0.18);border-color:var(--terracotta)}
   .module.sniff{background:var(--forest);top:30px;left:30px;color:#fff}
@@ -311,29 +313,29 @@
       <p>Modular, durable, premium materials designed for daily play.</p>
     </div>
     <div class="prod-slider">
-      <div class="prod-slide">Sniff</div>
-      <div class="prod-slide">Slide</div>
-      <div class="prod-slide">Spin</div>
-      <div class="prod-slide">Discover</div>
+      <div class="prod-slide" style="background:url('https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.35);">Sniff</div>
+      <div class="prod-slide" style="background:url('https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.35);">Slide</div>
+      <div class="prod-slide" style="background:url('https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.35);">Spin</div>
+      <div class="prod-slide" style="background:url('https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.35);">Discover</div>
     </div>
     <div class="specs">
       <div class="spec">
-        <div class="icon">🌿</div>
+        <div class="icon spec-img" style="background:url('https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=300&auto=format&fit=crop') center/cover no-repeat;border-radius:10px;"></div>
         <h3>Materials</h3>
         <p>Food-safe, BPA-free plastics and sustainably sourced wood accents.</p>
       </div>
       <div class="spec">
-        <div class="icon">📏</div>
+        <div class="icon spec-img" style="background:url('https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=300&auto=format&fit=crop') center/cover no-repeat;border-radius:10px;"></div>
         <h3>Dimensions</h3>
         <p>24 × 24 × 12 cm — compact enough for any home, sturdy enough for eager paws.</p>
       </div>
       <div class="spec">
-        <div class="icon">⚖️</div>
+        <div class="icon spec-img" style="background:url('https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=300&auto=format&fit=crop') center/cover no-repeat;border-radius:10px;"></div>
         <h3>Weight</h3>
         <p>1.1 kg — weighted base stays put during enthusiastic play.</p>
       </div>
       <div class="spec">
-        <div class="icon">🧼</div>
+        <div class="icon spec-img" style="background:url('https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=300&auto=format&fit=crop') center/cover no-repeat;border-radius:10px;"></div>
         <h3>Cleaning</h3>
         <p>Dishwasher-safe removable modules; wipe base with a damp cloth.</p>
       </div>
@@ -395,27 +397,27 @@
     </div>
     <div class="feat-grid">
       <div class="feat">
-        <span class="icon">👃</span>
+        <div class="icon feat-img" style="background:url('https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=300&auto=format&fit=crop') center/cover no-repeat;border-radius:12px;"></div>
         <h3>Sniff and Discover</h3>
         <p>Hidden scent chambers engage your dog's powerful nose.</p>
       </div>
       <div class="feat">
-        <span class="icon">🧩</span>
+        <div class="icon feat-img" style="background:url('https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=300&auto=format&fit=crop') center/cover no-repeat;border-radius:12px;"></div>
         <h3>Slide and Unlock</h3>
         <p>Sliding panels reveal treats when nudged the right way.</p>
       </div>
       <div class="feat">
-        <span class="icon">🔄</span>
+        <div class="icon feat-img" style="background:url('https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=300&auto=format&fit=crop') center/cover no-repeat;border-radius:12px;"></div>
         <h3>Spin and Reveal</h3>
         <p>Rotating discs challenge problem-solving skills.</p>
       </div>
       <div class="feat">
-        <span class="icon">🔗</span>
+        <div class="icon feat-img" style="background:url('https://images.unsplash.com/photo-1601807803222-cd61167b3150?q=80&w=300&auto=format&fit=crop') center/cover no-repeat;border-radius:12px;"></div>
         <h3>Modular Play</h3>
         <p>Swap modules to keep every session fresh and surprising.</p>
       </div>
       <div class="feat">
-        <span class="icon">📈</span>
+        <div class="icon feat-img" style="background:url('https://images.unsplash.com/photo-1569623133225-223c064ed59a?q=80&w=300&auto=format&fit=crop') center/cover no-repeat;border-radius:12px;"></div>
         <h3>Progressive Play</h3>
         <p>Increase difficulty as your dog masters each level.</p>
       </div>
@@ -436,10 +438,10 @@
         <h3>Pawloop in action</h3>
         <p>Tap each module below to see how your dog interacts with it.</p>
         <div class="toy-stage">
-          <div class="module sniff" id="mSniff" aria-label="Sniffing module">👃</div>
-          <div class="module slide" id="mSlide" aria-label="Sliding module">🧩</div>
-          <div class="module spin" id="mSpin" aria-label="Rotating module">🔄</div>
-          <div class="module discover" id="mDiscover" aria-label="Discovery module">🎁</div>
+          <div class="module sniff" id="mSniff" aria-label="Sniffing module" style="background:url('https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=200&auto=format&fit=crop') center/cover no-repeat;"></div>
+          <div class="module slide" id="mSlide" aria-label="Sliding module" style="background:url('https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=200&auto=format&fit=crop') center/cover no-repeat;"></div>
+          <div class="module spin" id="mSpin" aria-label="Rotating module" style="background:url('https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=200&auto=format&fit=crop') center/cover no-repeat;"></div>
+          <div class="module discover" id="mDiscover" aria-label="Discovery module" style="background:url('https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=200&auto=format&fit=crop') center/cover no-repeat;"></div>
           <div class="module-hint" id="hSniff">Sniff &amp; find hidden scent</div>
           <div class="module-hint" id="hSlide">Slide to unlock treats</div>
           <div class="module-hint" id="hSpin">Spin to reveal rewards</div>
