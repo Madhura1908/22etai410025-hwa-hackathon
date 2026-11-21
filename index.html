@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pawloop - The Endless Hunt</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#fbfaf7;--ink:#1a1a1a;--muted:#6b6b6b;--accent:#d35400;--accent2:#e67e22;--white:#ffffff;--card:#ffffff;--border:#e8e2d8}
+  html{scroll-behavior:smooth}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:980px;margin:0 auto;padding:0 20px}
+  header{padding:28px 0;position:sticky;top:0;background:rgba(251,250,247,0.8);backdrop-filter:blur(8px);z-index:50}
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .brand{font-size:1.4rem;font-weight:800;letter-spacing:-0.5px;color:var(--accent)}
+  .brand span{color:var(--ink)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:0.95rem;color:var(--muted);font-weight:500}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border-radius:8px;font-weight:600;font-size:0.95rem;cursor:pointer;border:none;transition:transform .15s,opacity .15s}
+  .btn:active{transform:scale(0.98)}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{opacity:0.92}
+  .btn-outline{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:#fff}
+  .hero{padding:90px 0 60px}
+  .hero h1{font-size:3.2rem;line-height:1.1;max-width:660px;font-weight:800;letter-spacing:-1px}
+  .hero h1 .accent{color:var(--accent)}
+  .hero p{font-size:1.2rem;color:var(--muted);max-width:540px;margin-top:22px}
+  .hero-actions{margin-top:34px;display:flex;gap:14px;align-items:center}
+  .hero-visual{position:relative;height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:24px;background:var(--border)}
+  .paw{width:260px;height:260px;background:#fff;border-radius:50%;box-shadow:0 20px 60px rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:center;font-size:90px;animation:float 6s ease-in-out infinite;border:6px solid var(--accent)}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  .features{padding:70px 0;background:#fff}
+  .section-head{text-align:center;margin-bottom:44px}
+  .section-head h2{font-size:2rem;font-weight:800;margin-bottom:8px}
+  .section-head p{color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+  .card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:30px 22px;text-align:center}
+  .card .icon{font-size:2.2rem;margin-bottom:14px}
+  .card h3{font-size:1.15rem;margin-bottom:8px}
+  .card p{font-size:0.95rem;color:var(--muted)}
+  .modular{padding:90px 0}
+  .modular h2{font-size:2rem;font-weight:800;text-align:center;margin-bottom:40px}
+  .modular p{max-width:640px;margin:0 auto 38px;text-align:center;color:var(--muted);font-size:1.1rem}
+  .mod-visual{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+  .mod-item{width:200px;height:200px;border-radius:16px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.1rem;text-align:center;padding:12px;position:relative;overflow:hidden}
+  .mod-item:nth-child(2){background:var(--accent2)}
+  .mod-item:nth-child(3){background:#c0392b}
+  .mod-item:nth-child(4){background:#2980b9}
+  .order{padding:70px 0;background:var(--accent);color:#fff;text-align:center}
+  .order h2{font-size:2rem;font-weight:800;margin-bottom:10px}
+  .order p{font-size:1.1rem;margin-bottom:26px;opacity:0.95;max-width:520px;margin-left:auto;margin-right:auto}
+  form.order-form{max-width:520px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center}
+  form.order-form input{padding:14px 18px;border-radius:8px;border:none;font-size:1rem;width:210px}
+  form.order-form button{padding:14px 26px;border-radius:8px;border:none;background:#fff;color:var(--accent);font-weight:700;cursor:pointer;font-size:1rem}
+  form.order-form button:hover{opacity:0.9}
+  #status{margin-top:14px;font-size:0.95rem;min-height:20px}
+  footer{border-top:1px solid var(--border);padding:34px 0;color:var(--muted);font-size:0.9rem;text-align:center}
+  .mob-menu{display:none}
+  @media (max-width:640px){
+    .hero h1{font-size:2.2rem}
+    .nav-links{display:none}
+    .mob-menu{display:block;font-size:1.5rem;background:none;border:none;cursor:pointer}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">Pawloop<span>.</span></div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#modular">How it works</a>
+      <a href="#order">Order</a>
+    </nav>
+    <button class="mob-menu" aria-label="menu">&#9776;</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center">
+      <div>
+        <h1>Pawloop <span class="accent">- The Endless Hunt.</span></h1>
+        <p>A modular dog enrichment toy combining sniffing, sliding, rotating and discovering hidden rewards - keeping dogs mentally stimulated, happy and tired.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="document.getElementById('order').scrollIntoView()">Order Now</button>
+          <button class="btn btn-outline">Watch Demo</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="paw">🐾</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="features">
+  <div class="container">
+    <div class="section-head">
+      <h2>Built for the hunt</h2>
+      <p>Four ways to play, one happy dog</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">👃</div>
+        <h3>Sniffing</h3>
+        <p>Hidden scent chambers engage a dog's powerful nose.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧩</div>
+        <h3>Sliding</h3>
+        <p>Sliding panels reveal treats when nudged the right way.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔄</div>
+        <h3>Rotating</h3>
+        <p>Rotating discs challenge problem-solving skills.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎁</div>
+        <h3>Discovering</h3>
+        <p>Hidden reward compartments keep the hunt going.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modular" class="modular">
+  <div class="container">
+    <h2>A modular play system</h2>
+    <p>Mix and match modules to keep every hunt fresh - no two sessions are the same.</p>
+    <div class="mod-visual">
+      <div class="mod-item">Sniff</div>
+      <div class="mod-item">Slide</div>
+      <div class="mod-item">Rotate</div>
+      <div class="mod-item">Discover</div>
+    </div>
+  </div>
+</section>
+
+<section id="order" class="order">
+  <div class="container">
+    <h2>Order your Pawloop</h2>
+    <p>Get the endless hunt delivered to your door.</p>
+    <form class="order-form" id="orderForm" novalidate>
+      <input type="text" id="name" placeholder="Your name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="text" id="address" placeholder="Delivery address" required>
+      <button type="submit">Place Order</button>
+      <div id="status"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">Pawloop. Designed for dogs, loved by owners.</div>
+</footer>
+
+<script>
+  const form = document.getElementById('orderForm');
+  const status = document.getElementById('status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = 'Placing order...';
+    const payload = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      address: document.getElementById('address').value
+    };
+    try {
+      const res = await fetch('/api/order', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (res.ok) {
+        status.style.color = '#2e7d32';
+        status.textContent = data.message || 'Order placed successfully!';
+        form.reset();
+      } else {
+        status.style.color = '#c62828';
+        status.textContent = data.error || 'Order failed. Try again.';
+      }
+    } catch (err) {
+      status.style.color = '#c62828';
+      status.textContent = 'Order failed. Try again.';
+    }
+  });
+</script>
+</body>
+</html>
