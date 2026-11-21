@@ -38,6 +38,12 @@
   h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:800;letter-spacing:-0.02em}
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%;border-radius:var(--radius)}
+  .sticker{
+    position:relative;display:inline-block;border-radius:26px;border:8px solid var(--white);
+    box-shadow:var(--shadow);overflow:hidden;background:var(--line)
+  }
+  .sticker img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block;opacity:0;transition:opacity 0.8s ease}
+  .sticker img.loaded{opacity:1}
   .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .skip{position:absolute;left:-9999px}
 
@@ -141,20 +147,19 @@
   .hero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
   .hero-visual{position:relative}
   .dog-hero{
-    width:100%;aspect-ratio:1/1;background:var(--cream-alt);border-radius:30px;overflow:hidden;
+    width:100%;height:520px;background:var(--cream-alt);border-radius:30px;overflow:hidden;
     border:1px solid var(--line);box-shadow:var(--shadow);position:relative
   }
-  .dog-hero img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease}
-  .dog-hero img.loaded{opacity:1}
-  .hero-toy{position:absolute;right:-30px;bottom:-40px;z-index:10;transform:rotate(-6deg)}
-  .hero-chip{position:absolute;left:-34px;top:30%;background:var(--white);border:3px solid var(--forest);border-radius:16px;
+  .dog-hero img{width:100%;height:100%;object-fit:cover}
+  .hero-toy{position:absolute;right:-34px;bottom:-48px;z-index:10;transform:rotate(-6deg)}
+  .hero-chip{position:absolute;left:-38px;top:30%;background:var(--white);border:3px solid var(--forest);border-radius:16px;
     padding:14px 18px;box-shadow:var(--shadow);font-weight:800;color:var(--forest);font-size:0.95rem;z-index:10}
 
   /* ========== Visual Storyline (3 acts) ========== */
   .storyline{background:var(--white)}
   .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .act{position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);background:var(--cream)}
-  .act-img{width:100%;height:320px;overflow:hidden;position:relative}
+  .act-img{width:100%;height:340px;overflow:hidden;position:relative}
   .act-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s ease,filter 0.7s ease}
   .act:hover .act-img img{transform:scale(1.05)}
   .act-tag{position:absolute;top:20px;left:20px;font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;
@@ -238,13 +243,12 @@
   .prod-head p{color:var(--muted);font-size:1.08rem}
   .prod-slider{display:flex;gap:18px;overflow-x:auto;padding-bottom:14px;margin-bottom:30px;scrollbar-width:none}
   .prod-slider::-webkit-scrollbar{display:none}
-  .prod-slide{flex:0 0 auto;width:250px;height:250px;border-radius:24px;background:var(--white);border:1px solid var(--line);
+  .prod-slide{flex:0 0 auto;width:260px;height:260px;border-radius:24px;background:var(--white);border:1px solid var(--line);
     flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;
     font-size:1.05rem;color:var(--forest);box-shadow:0 12px 28px -10px rgba(20,53,25,0.08);transition:var(--transition);
     position:relative;overflow:hidden}
   .prod-slide:hover{transform:translateY(-6px);border-color:var(--terracotta)}
-  .prod-slide img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s}
-  .prod-slide img.loaded{opacity:1}
+  .prod-slide img{width:100%;height:100%;object-fit:cover}
   .prod-slide .label{position:absolute;bottom:16px;left:0;right:0;text-align:center;z-index:4;color:var(--forest);text-shadow:0 1px 2px rgba(255,255,255,0.7)}
   .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
   .spec{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px}
@@ -266,8 +270,7 @@
     font-weight:800;font-size:1.15rem;margin:0 auto 16px;box-shadow:0 6px 14px rgba(20,53,25,0.25)}
   .step h3{font-size:1.1rem;margin-bottom:8px;color:var(--forest)}
   .step p{font-size:0.9rem;color:var(--muted)}
-  .step img{width:108px;height:108px;object-fit:cover;border-radius:16px;margin-bottom:16px;border:2px solid var(--line);opacity:0;transition:opacity 0.6s}
-  .step img.loaded{opacity:1}
+  .step img{width:108px;height:108px;object-fit:cover;border-radius:16px;margin-bottom:16px;border:2px solid var(--line);box-shadow:0 6px 16px rgba(20,53,25,0.12)}
 
   /* ========== Shop ========== */
   .shop{background:var(--cream-alt)}
@@ -389,8 +392,8 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="dog-hero">
-        <img id="heroImg" src="https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=900&auto=format&fit=crop" alt="Dog sniffing enrichment toy" loading="lazy">
+      <div class="sticker dog-hero">
+        <img id="heroImg" src="https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=1200&auto=format&fit=crop" alt="Dog sniffing enrichment toy">
       </div>
       <div class="hero-toy">
         <div class="toy-wrap small" id="heroToy" aria-label="Pawloop modular toy">
@@ -421,8 +424,8 @@
     </div>
     <div class="acts">
       <div class="act act-1">
-        <div class="act-img">
-          <img src="https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=800&auto=format&fit=crop" alt="Bored dog">
+        <div class="act-img sticker">
+          <img src="https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=1000&auto=format&fit=crop" alt="Bored dog">
         </div>
         <div class="act-tag">Act I</div>
         <div class="act-body">
@@ -431,8 +434,8 @@
         </div>
       </div>
       <div class="act act-2">
-        <div class="act-img">
-          <img src="https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=800&auto=format&fit=crop" alt="Dog with enrichment toy">
+        <div class="act-img sticker">
+          <img src="https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=1000&auto=format&fit=crop" alt="Dog with enrichment toy">
         </div>
         <div class="act-tag">Act II</div>
         <div class="act-body">
@@ -441,8 +444,8 @@
         </div>
       </div>
       <div class="act act-3">
-        <div class="act-img">
-          <img src="https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=800&auto=format&fit=crop" alt="Happy dog with treats">
+        <div class="act-img sticker">
+          <img src="https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=1000&auto=format&fit=crop" alt="Happy dog with treats">
         </div>
         <div class="act-tag">Act III</div>
         <div class="act-body">
@@ -477,18 +480,10 @@
         </div>
       </div>
       <div style="flex:1;min-width:300px">
-        <div class="prod-slide" style="background:url('https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=700&auto=format&fit=crop') center/cover no-repeat;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.35);">
-          <span class="label">Sniffing</span>
-        </div>
-        <div class="prod-slide" style="background:url('https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=700&auto=format&fit=crop') center/cover no-repeat;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.35);">
-          <span class="label">Sliding</span>
-        </div>
-        <div class="prod-slide" style="background:url('https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=700&auto=format&fit=crop') center/cover no-repeat;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.35);">
-          <span class="label">Rotating</span>
-        </div>
-        <div class="prod-slide" style="background:url('https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=700&auto=format&fit=crop') center/cover no-repeat;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.35);">
-          <span class="label">Discovering</span>
-        </div>
+        <div class="prod-slide"><img src="https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=700&auto=format&fit=crop" alt="Sniffing activity"><span class="label">Sniffing</span></div>
+        <div class="prod-slide"><img src="https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=700&auto=format&fit=crop" alt="Sliding activity"><span class="label">Sliding</span></div>
+        <div class="prod-slide"><img src="https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=700&auto=format&fit=crop" alt="Rotating activity"><span class="label">Rotating</span></div>
+        <div class="prod-slide"><img src="https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=700&auto=format&fit=crop" alt="Discovering activity"><span class="label">Discovering</span></div>
       </div>
     </div>
     <div class="specs">
@@ -535,25 +530,25 @@
     <div class="steps">
       <div class="step">
         <div class="num">1</div>
-        <img src="https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=400&auto=format&fit=crop" alt="Step 1 load treats">
+        <div class="sticker" style="width:110px;height:110px;margin:0 auto 12px"><img src="https://images.unsplash.com/photo-1583511655458-31e89507521f?q=80&w=400&auto=format&fit=crop" alt="Step 1 load treats"></div>
         <h3>Load the treats</h3>
         <p>Hide kibble inside each module.</p>
       </div>
       <div class="step">
         <div class="num">2</div>
-        <img src="https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=400&auto=format&fit=crop" alt="Step 2 choose activity">
+        <div class="sticker" style="width:110px;height:110px;margin:0 auto 12px"><img src="https://images.unsplash.com/photo-1548170550-7133be3e50f9?q=80&w=400&auto=format&fit=crop" alt="Step 2 choose activity"></div>
         <h3>Choose the mode</h3>
         <p>Sniff, slide, spin or discover.</p>
       </div>
       <div class="step">
         <div class="num">3</div>
-        <img src="https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=400&auto=format&fit=crop" alt="Step 3 dog plays">
+        <div class="sticker" style="width:110px;height:110px;margin:0 auto 12px"><img src="https://images.unsplash.com/photo-1585110396000-9ff14c8567c3?q=80&w=400&auto=format&fit=crop" alt="Step 3 dog plays"></div>
         <h3>Let them hunt</h3>
         <p>Nudge, paw and nose the toy.</p>
       </div>
       <div class="step">
         <div class="num">4</div>
-        <img src="https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=400&auto=format&fit=crop" alt="Step 4 reward">
+        <div class="sticker" style="width:110px;height:110px;margin:0 auto 12px"><img src="https://images.unsplash.com/photo-1526832688917-6623c0d23ddb?q=80&w=400&auto=format&fit=crop" alt="Step 4 reward"></div>
         <h3>Reward & repeat</h3>
         <p>Celebrate each discovery and swap modules.</p>
       </div>
@@ -644,8 +639,8 @@
         <div class="demo-note">The same modular toy you saw in the hero, the shop and the features — consistent design, every step of the way.</div>
       </div>
       <div>
-        <div class="demo-visual">
-          <img id="demoImg" src="https://images.unsplash.com/photo-1583337231544-227e1e9d49bc?q=80&w=700&auto=format&fit=crop" alt="Dog playing with enrichment toy" loading="lazy">
+        <div class="demo-visual sticker">
+          <img id="demoImg" src="https://images.unsplash.com/photo-1583337231544-227e1e9d49bc?q=80&w=1000&auto=format&fit=crop" alt="Dog playing with enrichment toy">
         </div>
       </div>
     </div>
@@ -660,8 +655,8 @@
       <p>Bring the endless hunt home.</p>
     </div>
     <div class="product-card">
-      <div class="thumb">
-        <img id="shopImg" src="https://images.unsplash.com/photo-1601807803222-cd61167b3150?q=80&w=900&auto=format&fit=crop" alt="Pawloop product">
+      <div class="thumb sticker">
+        <img id="shopImg" src="https://images.unsplash.com/photo-1601807803222-cd61167b3150?q=80&w=1200&auto=format&fit=crop" alt="Pawloop product">
         <span class="tag">Premium</span>
       </div>
       <div class="body">
@@ -771,20 +766,14 @@
 </footer>
 
 <script>
-  /* Reveal lazy images */
-  function revealImg(id){
-    const img=document.getElementById(id);
-    if(!img)return;
+  /* Reveal all images as they enter viewport */
+  document.querySelectorAll('img').forEach(img=>{
     const obs=new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
-        if(e.isIntersecting){img.classList.add('loaded');obs.disconnect();}
+        if(e.isIntersecting){e.target.classList.add('loaded');obs.disconnect();}
       });
     });
     obs.observe(img);
-  }
-  ['heroImg','demoImg','shopImg'].forEach(revealImg);
-  document.querySelectorAll('img[loading="lazy"]').forEach(img=>{
-    if(!img.id) revealImg(img.src.split('/').pop()||Math.random().toString(36).slice(2));
   });
 
   /* Mobile menu */
