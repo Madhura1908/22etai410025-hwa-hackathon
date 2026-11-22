@@ -87,8 +87,7 @@
   .hero-actions{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
   .hero-visual{position:relative}
   .photo-frame{width:100%;height:560px;background:var(--cream-alt);border-radius:32px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);position:relative;display:flex;align-items:center;justify-content:center}
-  .photo-frame img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease}
-  .photo-frame img.loaded{opacity:1}
+  .photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
   .hero-toy{position:absolute;right:-42px;bottom:-56px;z-index:10;transform:rotate(-8deg)}
   .hero-chip{position:absolute;left:-46px;top:28%;background:var(--white);border:3px solid var(--forest);border-radius:18px;padding:16px 22px;box-shadow:var(--shadow);font-weight:800;color:var(--forest);font-size:1rem;z-index:10}
   .photo-caption{position:absolute;bottom:20px;left:20px;right:20px;background:rgba(255,255,255,0.9);backdrop-filter:blur(6px);padding:14px 18px;border-radius:14px;font-size:0.95rem;color:var(--forest);font-weight:700;z-index:4;box-shadow:0 4px 12px rgba(0,0,0,0.08);border-left:4px solid var(--terracotta)}
@@ -218,8 +217,7 @@
   }
   .demo-note{margin-top:30px;font-size:0.98rem;color:var(--muted);line-height:1.8}
   .demo-visual{width:100%;height:470px;border-radius:30px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;background:var(--cream-alt)}
-  .demo-visual img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease}
-  .demo-visual img.loaded{opacity:1}
+  .demo-visual img{width:100%;height:100%;object-fit:cover;display:block}
 
   /* ========== Features ========== */
   .features{background:var(--white)}
@@ -237,8 +235,7 @@
   .shop .section-head{margin-bottom:52px}
   .product-card{background:var(--white);border:1px solid var(--line);border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
   .product-card .thumb{aspect-ratio:1/1;background:var(--cream);position:relative;overflow:hidden}
-  .product-card .thumb img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s}
-  .product-card .thumb img.loaded{opacity:1}
+  .product-card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
   .product-card .tag{position:absolute;top:18px;left:18px;background:var(--terracotta);color:#fff;font-size:0.8rem;font-weight:800;padding:6px 14px;border-radius:10px;letter-spacing:0.1em;box-shadow:0 4px 12px rgba(162,67,44,0.3)}
   .product-card .body{padding:34px;display:flex;flex-direction:column;flex:1}
   .product-card h3{font-size:1.6rem;margin-bottom:8px;color:var(--forest)}
@@ -744,16 +741,6 @@
 </footer>
 
 <script>
-  /* Reveal images as they enter viewport */
-  document.querySelectorAll('img').forEach(img=>{
-    const obs=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){e.target.classList.add('loaded');obs.disconnect();}
-      });
-    });
-    obs.observe(img);
-  });
-
   /* Mobile menu */
   const menuBtn=document.getElementById('menuBtn');
   const navList=document.getElementById('navList');
