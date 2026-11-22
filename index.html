@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* ========== Design tokens ========== */
+  /* ========== Design tokens - Premium Pet-Tech ========== */
   :root{
     --cream:#FBF9F4;
     --cream-alt:#F4F1E9;
@@ -25,8 +25,8 @@
     --white:#FFFFFF;
     --shadow:0 24px 48px -14px rgba(20,53,25,0.12);
     --shadow-sm:0 8px 20px -6px rgba(20,53,25,0.08);
-    --radius:22px;
-    --maxw:1080px;
+    --radius:24px;
+    --maxw:1100px;
     --transition:all 0.5s cubic-bezier(0.4,0,0.2,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -38,349 +38,327 @@
   h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:800;letter-spacing:-0.02em}
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%;border-radius:var(--radius)}
-  .sticker{
-    position:relative;display:inline-block;border-radius:26px;border:8px solid var(--white);
-    box-shadow:var(--shadow);overflow:hidden;background:var(--line)
-  }
-  .sticker img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
   .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
   .skip{position:absolute;left:-9999px}
 
   /* ========== Header / Nav ========== */
   header{
     position:sticky;top:0;z-index:60;
-    background:rgba(251,249,244,0.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+    background:rgba(251,249,244,0.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
   }
   .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-  .brand{font-family:'Playfair Display',Georgia,serif;font-size:1.35rem;font-weight:800;color:var(--forest);letter-spacing:-0.03em}
+  .brand{font-family:'Playfair Display',Georgia,serif;font-size:1.4rem;font-weight:800;color:var(--forest);letter-spacing:-0.03em}
   .brand .mark{color:var(--terracotta)}
-  .nav-list{display:flex;gap:26px;align-items:center;list-style:none}
-  .nav-list a{font-size:0.88rem;font-weight:600;color:var(--muted);padding:7px 0;position:relative}
+  .nav-list{display:flex;gap:28px;align-items:center;list-style:none}
+  .nav-list a{font-size:0.9rem;font-weight:600;color:var(--muted);padding:7px 0;position:relative}
   .nav-list a:hover,.nav-list a:focus{color:var(--forest)}
   .nav-list a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:2px;background:var(--terracotta);transform:scaleX(0);transition:transform .25s ease;border-radius:2px}
   .nav-list a:hover::after,.nav-list a:focus::after{transform:scaleX(1)}
-  .btn-mobile{display:none;background:none;border:none;font-size:1.5rem;color:var(--forest);cursor:pointer}
+  .btn-mobile{display:none;background:none;border:none;font-size:1.6rem;color:var(--forest);cursor:pointer}
 
   /* ========== Buttons ========== */
   .btn{
-    display:inline-flex;align-items:center;justify-content:center;padding:12px 24px;border-radius:12px;
-    font-weight:600;font-size:0.95rem;cursor:pointer;border:none;transition:transform .15s,background .15s,opacity .15s;
+    display:inline-flex;align-items:center;justify-content:center;padding:12px 26px;border-radius:12px;
+    font-weight:600;font-size:0.95rem;cursor:pointer;border:none;transition:transform .15s,background .15s,opacity .15s,box-shadow .15s;
   }
-  .btn:active{transform:scale(0.98)}
-  .btn-forest{background:var(--forest);color:#fff}
-  .btn-forest:hover{background:var(--forest-dark);opacity:1}
-  .btn-terracotta{background:var(--terracotta);color:#fff}
-  .btn-terracotta:hover{opacity:0.92}
+  .btn:active{transform:scale(0.97)}
+  .btn-forest{background:var(--forest);color:#fff;box-shadow:0 4px 14px rgba(20,53,25,0.25)}
+  .btn-forest:hover{background:var(--forest-dark);opacity:1;box-shadow:0 6px 18px rgba(20,53,25,0.32)}
+  .btn-terracotta{background:var(--terracotta);color:#fff;box-shadow:0 4px 14px rgba(192,86,58,0.28)}
+  .btn-terracotta:hover{opacity:0.92;box-shadow:0 6px 18px rgba(192,86,58,0.35)}
   .btn-ghost{background:transparent;color:var(--forest);border:1px solid var(--forest)}
   .btn-ghost:hover{background:var(--forest);color:#fff}
 
   /* ========== Utility ========== */
   .section{padding:86px 0}
-  .section-head{text-align:center;max-width:640px;margin:0 auto 56px}
+  .section-head{text-align:center;max-width:660px;margin:0 auto 60px}
   .eyebrow{font-size:0.8rem;font-weight:700;letter-spacing:0.16em;color:var(--terracotta);text-transform:uppercase;margin-bottom:10px;display:block}
-  .section-head h2{font-size:2.5rem;line-height:1.12;margin-bottom:14px;color:var(--forest)}
-  .section-head p{color:var(--muted);font-size:1.08rem}
+  .section-head h2{font-size:2.6rem;line-height:1.12;margin-bottom:14px;color:var(--forest)}
+  .section-head p{color:var(--muted);font-size:1.1rem}
   .badge{display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:5px 12px;border-radius:7px;background:var(--forest-soft);color:var(--forest);margin-bottom:16px}
 
-  /* ========== PAWLOOP TOY (consistent modular design) ========== */
-  .toy-wrap{position:relative;width:360px;height:360px;display:flex;align-items:center;justify-content:center;margin:0 auto}
-  .toy-base{
-    width:290px;height:290px;border-radius:46px;background:linear-gradient(180deg,#e8efea,#d3e0d6);
-    border:4px solid var(--forest);position:relative;box-shadow:inset 0 6px 16px rgba(20,53,25,0.10),var(--shadow-sm);
-    overflow:hidden;
-  }
-  .toy-center{
-    position:absolute;inset:34px;border-radius:30px;background:linear-gradient(135deg,#c0563a,#a3432c);
-    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:0.05em;
-    font-size:0.85rem;text-transform:uppercase;box-shadow:0 6px 14px rgba(162,67,44,0.35);
-  }
-  .toy-module{
-    width:92px;height:92px;border-radius:20px;background:var(--white);
-    border:3px solid var(--forest);position:absolute;display:flex;align-items:center;justify-content:center;
-    font-size:1.9rem;cursor:pointer;transition:var(--transition);box-shadow:var(--shadow-sm);
-  }
-  .toy-module .treat{
-    position:absolute;width:20px;height:20px;background:var(--terracotta);border-radius:50%;
-    opacity:0;transform:scale(0);transition:var(--transition);z-index:3;
-  }
-  .toy-module.sniff{top:-12px;left:-12px;}
-  .toy-module.slide{top:-12px;right:-12px;}
-  .toy-module.spin{bottom:-12px;left:-12px;}
-  .toy-module.discover{bottom:-12px;right:-12px;}
-  .toy-module.active{background:var(--terracotta-soft);border-color:var(--terracotta);transform:scale(1.08);z-index:5;}
-  .toy-module.active .treat{opacity:1;transform:scale(1.3);background:var(--terracotta-dark);}
-  .toy-module.active .treat::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px dashed var(--terracotta);animation:pulseTreat 1.2s ease-in-out infinite}
-  @keyframes pulseTreat{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.35);opacity:0.3}}
-  .toy-glow{
-    position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(192,86,58,0.25),transparent 70%);
-    z-index:-1;opacity:0;transition:opacity 0.4s
-  }
-  .toy-wrap.active .toy-glow{opacity:1}
-  .toy-label{
-    position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);font-size:0.8rem;font-weight:700;
-    letter-spacing:0.1em;color:var(--muted);white-space:nowrap;opacity:0;transition:var(--transition)
-  }
-  .toy-module.active + .toy-label,.toy-module:hover + .toy-label{opacity:1}
-  .toy-module.sniff + .toy-label{left:-12px;transform:none}
-  .toy-module.slide + .toy-label{right:-12px;left:auto;transform:none}
-  .toy-module.spin + .toy-label{bottom:-42px;left:-12px;transform:none}
-  .toy-module.discover + .toy-label{bottom:-42px;right:-12px;left:auto;transform:none}
-
-  /* Reuse small toy */
-  .toy-wrap.small{width:250px;height:250px}
-  .toy-wrap.small .toy-base{width:210px;height:210px;border-radius:34px}
-  .toy-wrap.small .toy-center{inset:26px;font-size:0.7rem}
-  .toy-wrap.small .toy-module{width:62px;height:62px;border-radius:14px;font-size:1.3rem}
-  .toy-wrap.small .toy-module.sniff{top:-8px;left:-8px}
-  .toy-wrap.small .toy-module.slide{top:-8px;right:-8px}
-  .toy-wrap.small .toy-module.spin{bottom:-8px;left:-8px}
-  .toy-wrap.small .toy-module.discover{bottom:-8px;right:-8px}
-
   /* ========== Hero ========== */
-  .hero{position:relative;padding:110px 0 80px;overflow:hidden}
-  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(650px 500px at 70% -10%, rgba(232,239,233,0.7), transparent 55%);z-index:0}
+  .hero{position:relative;padding:110px 0 90px;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(700px 500px at 70% -10%, rgba(232,239,233,0.7), transparent 55%);z-index:0}
   .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
-  .hero h1{font-size:4.2rem;line-height:1.02;max-width:540px}
+  .hero h1{font-size:4.4rem;line-height:1.02;max-width:540px}
   .hero h1 .accent{color:var(--terracotta)}
-  .hero p{font-size:1.2rem;color:var(--muted);max-width:450px;margin-top:20px}
-  .hero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+  .hero p{font-size:1.25rem;color:var(--muted);max-width:460px;margin-top:22px}
+  .hero-actions{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
   .hero-visual{position:relative}
-  .dog-hero{
-    width:100%;height:520px;background:var(--cream-alt);border-radius:30px;overflow:hidden;
-    border:1px solid var(--line);box-shadow:var(--shadow);position:relative
-  }
-  .dog-hero img{width:100%;height:100%;object-fit:cover}
-  .hero-toy{position:absolute;right:-34px;bottom:-48px;z-index:10;transform:rotate(-6deg)}
-  .hero-chip{position:absolute;left:-38px;top:30%;background:var(--white);border:3px solid var(--forest);border-radius:16px;
-    padding:14px 18px;box-shadow:var(--shadow);font-weight:800;color:var(--forest);font-size:0.95rem;z-index:10}
+  .dog-hero{width:100%;height:560px;background:var(--cream-alt);border-radius:32px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);position:relative;display:flex;align-items:center;justify-content:center}
+  .dog-hero .dog-scene{width:92%;height:92%;position:relative}
+  .hero-toy{position:absolute;right:-42px;bottom:-56px;z-index:10;transform:rotate(-8deg)}
+  .hero-chip{position:absolute;left:-46px;top:28%;background:var(--white);border:3px solid var(--forest);border-radius:18px;padding:16px 22px;box-shadow:var(--shadow);font-weight:800;color:var(--forest);font-size:1rem;z-index:10}
 
-  /* ========== Visual Storyline (3 acts) ========== */
+  /* ========== Concept imagery (labeled brand visuals) ========== */
+  .concept-wrap{position:relative;width:100%;height:100%;border-radius:inherit;overflow:hidden;background:var(--cream-alt)}
+  .concept-label{position:absolute;top:16px;left:16px;z-index:5;font-size:0.72rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:6px 14px;border-radius:10px;background:rgba(255,255,255,0.85);color:var(--forest);border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+  .concept-dog{position:absolute;bottom:8%;left:50%;transform:translateX(-50%);width:62%;height:70%;background:var(--white);border:6px solid var(--forest);border-radius:50% 50% 40% 40%;box-shadow:var(--shadow-sm);overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+  .concept-body{width:82%;height:62%;background:linear-gradient(180deg,#F5F5DC 0%,#E6D8B8 100%);border-radius:44px 44px 30px 30px;position:relative}
+  .concept-leg{position:absolute;bottom:0;width:14%;height:28%;background:#D4C5A0;border-radius:10px 10px 6px 6px}
+  .concept-leg.l{left:18%}
+  .concept-leg.r{right:18%}
+  .concept-head{position:absolute;top:-18%;left:44%;width:30%;height:32%;background:linear-gradient(180deg,#F5F5DC 0%,#E6D8B8 100%);border-radius:50% 50% 40% 40%;border:4px solid var(--forest);z-index:2}
+  .concept-ear{position:absolute;top:-16%;width:16%;height:18%;background:linear-gradient(180deg,#F5F5DC 0%,#E6D8B8 100%);border-radius:60% 40% 30% 70%}
+  .concept-ear.l{left:6%;transform:rotate(-20deg)}
+  .concept-ear.r{right:6%;transform:rotate(20deg)}
+  .concept-snout{position:absolute;bottom:12%;left:48%;width:16%;height:14%;background:#F0E6D2;border-radius:50%;border:2px solid var(--forest);z-index:3}
+  .concept-nose{position:absolute;bottom:10%;left:54%;width:6px;height:6px;background:#3E2723;border-radius:50%;z-index:4}
+  .concept-eye{position:absolute;top:38%;width:4px;height:4px;background:#3E2723;border-radius:50%}
+  .concept-eye.l{left:42%}
+  .concept-eye.r{left:54%}
+  .concept-tail{position:absolute;top:20%;left:-12%;width:30%;height:34%;background:#D4C5A0;border-radius:50%;transform:rotate(-25deg);box-shadow:inset -4px -4px 0 rgba(0,0,0,0.06)}
+  .concept-treat{position:absolute;width:20px;height:20px;background:var(--terracotta-dark);border-radius:50%;top:30%;right:10%;z-index:3;box-shadow:0 2px 6px rgba(0,0,0,0.15)}
+  .concept-happy-mouth{position:absolute;bottom:18%;left:48%;width:10px;height:8px;border:2px solid var(--terracotta);border-radius:50% 50% 40% 40%;transform:rotate(-15deg)}
+
+  /* ========== Storyline ========== */
   .storyline{background:var(--white)}
-  .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .act{position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);background:var(--cream)}
-  .act-img{width:100%;height:340px;overflow:hidden;position:relative}
-  .act-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s ease,filter 0.7s ease}
-  .act:hover .act-img img{transform:scale(1.05)}
-  .act-tag{position:absolute;top:20px;left:20px;font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;
-    padding:6px 12px;border-radius:8px;color:#fff;z-index:4;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
-  .act-body{padding:26px 22px;display:flex;flex-direction:column;gap:10px}
-  .act h3{font-size:1.3rem;margin-bottom:4px;color:var(--forest)}
-  .act p{font-size:0.95rem;color:var(--muted);line-height:1.6}
-  .act-1 .act-img img{filter:grayscale(1) contrast(1.05) brightness(0.95)}
+  .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .act{position:relative;border-radius:28px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-sm);background:var(--cream)}
+  .act-img{width:100%;height:360px;overflow:hidden;position:relative}
+  .act-tag{position:absolute;top:20px;left:20px;font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:7px 14px;border-radius:10px;color:#fff;z-index:4;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+  .act-body{padding:30px 24px;display:flex;flex-direction:column;gap:12px}
+  .act h3{font-size:1.35rem;margin-bottom:4px;color:var(--forest)}
+  .act p{font-size:0.98rem;color:var(--muted);line-height:1.7}
   .act-1 .act-tag{background:var(--muted)}
   .act-2 .act-tag{background:var(--forest)}
   .act-3 .act-tag{background:var(--terracotta)}
-  .act-3 .act-img img{filter:saturate(1.15) contrast(1.05)}
+  .act:hover .act-img .dog-scene{transform:scale(1.03)}
 
-  /* ========== Animated Demo ========== */
+  /* ========== Product / Toy Render ========== */
+  .toy-wrap{position:relative;width:380px;height:380px;display:flex;align-items:center;justify-content:center;margin:0 auto}
+  .toy-base{
+    width:310px;height:310px;border-radius:50px;background:linear-gradient(180deg,#e8efea,#d3e0d6);
+    border:5px solid var(--forest);position:relative;box-shadow:inset 0 8px 20px rgba(20,53,25,0.10),var(--shadow-sm);overflow:hidden
+  }
+  .toy-center{position:absolute;inset:40px;border-radius:34px;background:linear-gradient(135deg,#c0563a,#a3432c);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;letter-spacing:0.05em;font-size:0.9rem;text-transform:uppercase;box-shadow:0 8px 18px rgba(162,67,44,0.35)}
+  .toy-module{width:100px;height:100px;border-radius:24px;background:var(--white);border:4px solid var(--forest);position:absolute;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;transition:var(--transition);box-shadow:var(--shadow-sm)}
+  .toy-module .treat{position:absolute;width:22px;height:22px;background:var(--terracotta);border-radius:50%;opacity:0;transform:scale(0);transition:var(--transition);z-index:3}
+  .toy-module.sniff{top:-14px;left:-14px}
+  .toy-module.slide{top:-14px;right:-14px}
+  .toy-module.spin{bottom:-14px;left:-14px}
+  .toy-module.discover{bottom:-14px;right:-14px}
+  .toy-module.active{background:var(--terracotta-soft);border-color:var(--terracotta);transform:scale(1.12);z-index:5}
+  .toy-module.active .treat{opacity:1;transform:scale(1.4);background:var(--terracotta-dark)}
+  .toy-module.active .treat::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:3px dashed var(--terracotta);animation:pulseTreat 1.4s ease-in-out infinite}
+  @keyframes pulseTreat{0%,100%{transform:scale(1);opacity:0.7}50%{transform:scale(1.4);opacity:0.3}}
+  .toy-glow{position:absolute;inset:-36px;border-radius:50%;background:radial-gradient(circle,rgba(192,86,58,0.22),transparent 70%);z-index:-1;opacity:0;transition:opacity 0.4s}
+  .toy-wrap.active .toy-glow{opacity:1}
+  .toy-label{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);font-size:0.85rem;font-weight:800;letter-spacing:0.1em;color:var(--muted);white-space:nowrap;opacity:0;transition:var(--transition)}
+  .toy-module.active + .toy-label,.toy-module:hover + .toy-label{opacity:1}
+  .toy-module.sniff + .toy-label{left:-14px;transform:none}
+  .toy-module.slide + .toy-label{right:-14px;left:auto;transform:none}
+  .toy-module.spin + .toy-label{bottom:-46px;left:-14px;transform:none}
+  .toy-module.discover + .toy-label{bottom:-46px;right:-14px;left:auto;transform:none}
+  .toy-wrap.small{width:260px;height:260px}
+  .toy-wrap.small .toy-base{width:220px;height:220px;border-radius:36px}
+  .toy-wrap.small .toy-center{inset:32px;font-size:0.75rem}
+  .toy-wrap.small .toy-module{width:70px;height:70px;border-radius:18px;font-size:1.5rem}
+  .toy-wrap.small .toy-module.sniff{top:-10px;left:-10px}
+  .toy-wrap.small .toy-module.slide{top:-10px;right:-10px}
+  .toy-wrap.small .toy-module.spin{bottom:-10px;left:-10px}
+  .toy-wrap.small .toy-module.discover{bottom:-10px;right:-10px}
+
+  /* ========== Product section ========== */
+  .product{background:var(--cream-alt)}
+  .prod-head{text-align:center;margin-bottom:52px}
+  .prod-head h2{font-size:2.6rem;margin-bottom:14px;color:var(--forest)}
+  .prod-head p{color:var(--muted);font-size:1.1rem}
+  .prod-visual{display:flex;flex-wrap:wrap;gap:34px;align-items:center;justify-content:center;margin-bottom:52px}
+  .prod-slider{display:flex;gap:18px;overflow-x:auto;padding-bottom:14px;margin-bottom:44px;scrollbar-width:none}
+  .prod-slider::-webkit-scrollbar{display:none}
+  .prod-slide{flex:0 0 auto;width:270px;height:270px;border-radius:26px;background:var(--white);border:1px solid var(--line);flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;color:var(--forest);box-shadow:0 14px 30px -10px rgba(20,53,25,0.08);transition:var(--transition);position:relative;overflow:hidden}
+  .prod-slide:hover{transform:translateY(-8px);border-color:var(--terracotta)}
+  .prod-slide img{width:100%;height:100%;object-fit:cover}
+  .prod-slide .label{position:absolute;bottom:18px;left:0;right:0;text-align:center;z-index:4;color:var(--forest);text-shadow:0 1px 2px rgba(255,255,255,0.75)}
+  .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}
+  .spec{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:26px}
+  .spec .icon{width:50px;height:50px;border-radius:16px;background:var(--forest-soft);border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 14px;color:var(--forest);font-size:1.2rem}
+  .spec h3{font-size:1.1rem;margin-bottom:7px;color:var(--forest)}
+  .spec p{font-size:0.92rem;color:var(--muted);line-height:1.6}
+  .whats{margin-top:40px}
+  .whats h3{font-size:1.4rem;margin-bottom:14px;color:var(--forest)}
+  .whats ul{list-style:none;display:grid;gap:12px}
+  .whats li{display:flex;align-items:flex-start;gap:14px;font-size:0.98rem;color:var(--ink)}
+  .whats li::before{content:'✔';color:var(--forest);font-weight:800;flex-shrink:0;font-size:1.1rem;margin-top:2px}
+
+  /* ========== How to play ========== */
+  .howto{background:var(--white)}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:26px}
+  .step{text-align:center;padding:30px 20px;border-radius:24px;background:var(--cream);border:1px solid var(--line);position:relative}
+  .step .num{width:48px;height:48px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;font-weight:800;font-size:1.25rem;margin:0 auto 18px;box-shadow:0 8px 18px rgba(20,53,25,0.28)}
+  .step h3{font-size:1.15rem;margin-bottom:9px;color:var(--forest)}
+  .step p{font-size:0.92rem;color:var(--muted)}
+  .step-visual{width:116px;height:116px;border-radius:20px;margin:0 auto 18px;border:3px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;overflow:hidden}
+
+  /* ========== Interactive Demo ========== */
   .demo{background:var(--cream-alt)}
-  .demo .section-head{margin-bottom:46px}
-  .demo-wrap{display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center}
-  .demo-panel h3{font-size:1.4rem;margin-bottom:10px;color:var(--forest)}
-  .demo-panel p{font-size:0.98rem;color:var(--muted);margin-bottom:24px}
-  .demo-stage{position:relative;width:100%;max-width:430px;height:430px;border-radius:30px;background:var(--white);
-    border:2px solid var(--line);overflow:hidden;box-shadow:var(--shadow);margin:0 auto}
+  .demo .section-head{margin-bottom:52px}
+  .demo-wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:46px;align-items:center}
+  .demo-panel h3{font-size:1.5rem;margin-bottom:10px;color:var(--forest)}
+  .demo-panel p{font-size:1rem;color:var(--muted);margin-bottom:26px;line-height:1.7}
+  .demo-stage{position:relative;width:100%;max-width:470px;height:470px;border-radius:34px;background:var(--white);border:2px solid var(--line);overflow:hidden;box-shadow:var(--shadow);margin:0 auto}
   .demo-bg{position:absolute;inset:0;background:var(--forest-soft);z-index:0}
-  .demo-floor{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(180deg,#d3e0d6,#c8d8c9);z-index:1}
-  .demo-toy{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:10;width:210px;height:210px;}
-  .demo-toy .toy-base{width:210px;height:210px;border-radius:36px}
-  .demo-toy .toy-center{inset:30px;font-size:0.7rem}
-  .demo-toy .toy-module{width:66px;height:66px;border-radius:16px;font-size:1.4rem}
-  .demo-toy .toy-module.sniff{top:-10px;left:-10px}
-  .demo-toy .toy-module.slide{top:-10px;right:-10px}
-  .demo-toy .toy-module.spin{bottom:-10px;left:-10px}
-  .demo-toy .toy-module.discover{bottom:-10px;right:-10px}
-  .demo-paw{position:absolute;z-index:15;width:86px;height:86px;background:#fff;border:3px solid var(--forest);border-radius:50%;
-    display:flex;align-items:center;justify-content:center;font-size:2.4rem;box-shadow:var(--shadow);top:60px;left:44px;
-    animation: pawMove 4s ease-in-out infinite}
+  .demo-floor{position:absolute;bottom:0;left:0;right:0;height:42%;background:linear-gradient(180deg,#d3e0d6,#c8d8c9);z-index:1}
+  .demo-toy{position:absolute;bottom:56px;left:50%;transform:translateX(-50%);z-index:10;width:230px;height:230px}
+  .demo-toy .toy-base{width:230px;height:230px;border-radius:40px}
+  .demo-toy .toy-center{inset:36px;font-size:0.75rem}
+  .demo-toy .toy-module{width:74px;height:74px;border-radius:20px;font-size:1.6rem}
+  .demo-toy .toy-module.sniff{top:-12px;left:-12px}
+  .demo-toy .toy-module.slide{top:-12px;right:-12px}
+  .demo-toy .toy-module.spin{bottom:-12px;left:-12px}
+  .demo-toy .toy-module.discover{bottom:-12px;right:-12px}
+  .demo-paw{position:absolute;z-index:15;width:94px;height:94px;background:#fff;border:4px solid var(--forest);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.6rem;box-shadow:var(--shadow-sm);top:66px;left:48px;animation: pawMove 5s ease-in-out infinite}
   @keyframes pawMove{
-    0%,18%{transform:translate(0,0) scale(1)}
-    22%{transform:translate(110px,150px) scale(1.15)}
-    26%{transform:translate(110px,150px) scale(1.05)}
-    40%{transform:translate(0,0) scale(1)}
+    0%,16%{transform:translate(0,0) scale(1)}
+    20%{transform:translate(120px,160px) scale(1.2)}
+    24%{transform:translate(120px,160px) scale(1.05)}
+    38%{transform:translate(0,0) scale(1)}
     100%{transform:translate(0,0) scale(1)}
   }
-  .demo-treat{position:absolute;width:20px;height:20px;background:var(--terracotta-dark);border-radius:50%;z-index:16;
-    opacity:0;transform:scale(0);left:50%;top:40px;animation: treatPop 4s ease-in-out infinite}
+  .demo-treat{position:absolute;width:22px;height:22px;background:var(--terracotta-dark);border-radius:50%;z-index:16;opacity:0;transform:scale(0);left:50%;top:46px;animation: treatPop 5s ease-in-out infinite}
   @keyframes treatPop{
-    0%,26%{opacity:0;transform:translate(-50%,0) scale(0)}
-    30%{opacity:1;transform:translate(-50%,0) scale(1.2)}
-    36%{opacity:1;transform:translate(-50%,-60px) scale(1)}
-    42%{opacity:0;transform:translate(-50%,-60px) scale(0)}
-    100%{opacity:0;transform:translate(-50%,-60px) scale(0)}
+    0%,24%{opacity:0;transform:translate(-50%,0) scale(0)}
+    28%{opacity:1;transform:translate(-50%,0) scale(1.3)}
+    34%{opacity:1;transform:translate(-50%,-66px) scale(1)}
+    40%{opacity:0;transform:translate(-50%,-66px) scale(0)}
+    100%{opacity:0;transform:translate(-50%,-66px) scale(0)}
   }
-  .demo-highlight{position:absolute;width:110px;height:110px;border-radius:30px;border:3px dashed var(--terracotta);
-    z-index:8;left:50%;top:62px;transform:translateX(-50%);opacity:0;animation: demoHighlight 4s ease-in-out infinite}
+  .demo-highlight{position:absolute;width:120px;height:120px;border-radius:34px;border:4px dashed var(--terracotta);z-index:8;left:50%;top:68px;transform:translateX(-50%);opacity:0;animation: demoHighlight 5s ease-in-out infinite}
   @keyframes demoHighlight{
-    0%,20%{opacity:0}
-    24%{opacity:1}
-    30%{opacity:1}
-    34%{opacity:0}
+    0%,18%{opacity:0}
+    22%{opacity:1}
+    28%{opacity:1}
+    32%{opacity:0}
     100%{opacity:0}
   }
-  .demo-note{margin-top:26px;font-size:0.95rem;color:var(--muted);line-height:1.7}
-  .demo-visual{border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:4/5}
+  .demo-note{margin-top:30px;font-size:0.98rem;color:var(--muted);line-height:1.8}
+  .demo-visual{border-radius:30px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:4/5}
   .demo-visual img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.8s ease}
   .demo-visual img.loaded{opacity:1}
 
   /* ========== Features ========== */
   .features{background:var(--white)}
-  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px}
-  .feat{background:var(--cream);border:1px solid var(--line);border-radius:22px;padding:30px 20px;text-align:center;transition:var(--transition)}
-  .feat:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm);background:var(--white)}
-  .feat-icon{width:66px;height:66px;border-radius:18px;background:var(--white);border:2px solid var(--forest);
-    display:grid;place-items:center;margin:0 auto 18px;box-shadow:0 6px 16px rgba(20,53,25,0.08);font-size:1.5rem}
-  .feat h3{font-size:1.1rem;margin-bottom:8px;color:var(--forest)}
-  .feat p{font-size:0.9rem;color:var(--muted)}
-  .feat-toy{margin-top:26px}
-  .modular-note{margin-top:46px;text-align:center;color:var(--muted);font-size:1rem}
-
-  /* ========== Product ========== */
-  .product{background:var(--cream-alt)}
-  .prod-head{text-align:center;margin-bottom:44px}
-  .prod-head h2{font-size:2.5rem;margin-bottom:12px;color:var(--forest)}
-  .prod-head p{color:var(--muted);font-size:1.08rem}
-  .prod-slider{display:flex;gap:18px;overflow-x:auto;padding-bottom:14px;margin-bottom:30px;scrollbar-width:none}
-  .prod-slider::-webkit-scrollbar{display:none}
-  .prod-slide{flex:0 0 auto;width:260px;height:260px;border-radius:24px;background:var(--white);border:1px solid var(--line);
-    flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;
-    font-size:1.05rem;color:var(--forest);box-shadow:0 12px 28px -10px rgba(20,53,25,0.08);transition:var(--transition);
-    position:relative;overflow:hidden}
-  .prod-slide:hover{transform:translateY(-6px);border-color:var(--terracotta)}
-  .prod-slide img{width:100%;height:100%;object-fit:cover}
-  .prod-slide .label{position:absolute;bottom:16px;left:0;right:0;text-align:center;z-index:4;color:var(--forest);text-shadow:0 1px 2px rgba(255,255,255,0.7)}
-  .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
-  .spec{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px}
-  .spec .icon{width:46px;height:46px;border-radius:14px;background:var(--forest-soft);border:1px solid var(--line);
-    display:grid;place-items:center;margin:0 auto 12px;color:var(--forest);font-size:1.15rem}
-  .spec h3{font-size:1.05rem;margin-bottom:6px;color:var(--forest)}
-  .spec p{font-size:0.9rem;color:var(--muted)}
-  .whats{margin-top:34px}
-  .whats h3{font-size:1.3rem;margin-bottom:12px;color:var(--forest)}
-  .whats ul{list-style:none;display:grid;gap:10px}
-  .whats li{display:flex;align-items:flex-start;gap:12px;font-size:0.95rem;color:var(--ink)}
-  .whats li::before{content:'✔';color:var(--forest);font-weight:800;flex-shrink:0;font-size:1rem}
-
-  /* ========== How to play ========== */
-  .howto{background:var(--white)}
-  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
-  .step{text-align:center;padding:28px 18px;border-radius:22px;background:var(--cream);border:1px solid var(--line);position:relative}
-  .step .num{width:44px;height:44px;border-radius:50%;background:var(--forest);color:#fff;display:grid;place-items:center;
-    font-weight:800;font-size:1.15rem;margin:0 auto 16px;box-shadow:0 6px 14px rgba(20,53,25,0.25)}
-  .step h3{font-size:1.1rem;margin-bottom:8px;color:var(--forest)}
-  .step p{font-size:0.9rem;color:var(--muted)}
-  .step img{width:108px;height:108px;object-fit:cover;border-radius:16px;margin-bottom:16px;border:2px solid var(--line);box-shadow:0 6px 16px rgba(20,53,25,0.12)}
+  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+  .feat{background:var(--cream);border:1px solid var(--line);border-radius:24px;padding:34px 24px;text-align:center;transition:var(--transition)}
+  .feat:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm);background:var(--white)}
+  .feat-icon{width:74px;height:74px;border-radius:22px;background:var(--white);border:3px solid var(--forest);display:grid;place-items:center;margin:0 auto 22px;box-shadow:0 8px 20px rgba(20,53,25,0.1);font-size:1.8rem}
+  .feat h3{font-size:1.2rem;margin-bottom:10px;color:var(--forest)}
+  .feat p{font-size:0.92rem;color:var(--muted)}
+  .feat-toy{margin-top:52px}
+  .modular-note{margin-top:52px;text-align:center;color:var(--muted);font-size:1.05rem}
 
   /* ========== Shop ========== */
   .shop{background:var(--cream-alt)}
-  .shop .section-head{margin-bottom:46px}
-  .product-card{background:var(--white);border:1px solid var(--line);border-radius:26px;overflow:hidden;display:flex;flex-direction:column}
+  .shop .section-head{margin-bottom:52px}
+  .product-card{background:var(--white);border:1px solid var(--line);border-radius:28px;overflow:hidden;display:flex;flex-direction:column}
   .product-card .thumb{aspect-ratio:1/1;background:var(--cream);position:relative;overflow:hidden}
   .product-card .thumb img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s}
   .product-card .thumb img.loaded{opacity:1}
-  .product-card .tag{position:absolute;top:16px;left:16px;background:var(--terracotta);color:#fff;font-size:0.75rem;font-weight:800;
-    padding:5px 12px;border-radius:8px;letter-spacing:0.1em;box-shadow:0 4px 12px rgba(162,67,44,0.3)}
-  .product-card .body{padding:30px;display:flex;flex-direction:column;flex:1}
-  .product-card h3{font-size:1.5rem;margin-bottom:6px;color:var(--forest)}
-  .product-card .rating{display:flex;align-items:center;gap:6px;margin-bottom:12px;color:var(--terracotta);font-weight:800;font-size:0.95rem}
-  .product-card p{font-size:0.95rem;color:var(--muted);margin-bottom:20px;flex:1;line-height:1.7}
-  .order-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:auto}
-  .price{font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;font-weight:800;color:var(--ink)}
-  .qty{display:flex;align-items:center;gap:8px}
-  .qty button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--white);cursor:pointer;
-    font-weight:800;color:var(--forest);display:flex;align-items:center;justify-content:center}
+  .product-card .tag{position:absolute;top:18px;left:18px;background:var(--terracotta);color:#fff;font-size:0.8rem;font-weight:800;padding:6px 14px;border-radius:10px;letter-spacing:0.1em;box-shadow:0 4px 12px rgba(162,67,44,0.3)}
+  .product-card .body{padding:34px;display:flex;flex-direction:column;flex:1}
+  .product-card h3{font-size:1.6rem;margin-bottom:8px;color:var(--forest)}
+  .product-card .rating{display:flex;align-items:center;gap:8px;margin-bottom:14px;color:var(--terracotta);font-weight:800;font-size:1rem}
+  .product-card p{font-size:0.98rem;color:var(--muted);margin-bottom:22px;flex:1;line-height:1.8}
+  .order-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto}
+  .price{font-family:'Playfair Display',Georgia,serif;font-size:1.8rem;font-weight:800;color:var(--ink)}
+  .qty{display:flex;align-items:center;gap:10px}
+  .qty button{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--white);cursor:pointer;font-weight:800;color:var(--forest);display:flex;align-items:center;justify-content:center}
   .qty button:hover{background:var(--forest-soft)}
-  .qty span{font-weight:700;min-width:26px;text-align:center;color:var(--ink)}
-  .cart-empty{text-align:center;padding:46px;color:var(--muted)}
+  .qty span{font-weight:700;min-width:28px;text-align:center;color:var(--ink)}
+  .cart-empty{text-align:center;padding:52px;color:var(--muted)}
 
   /* ========== FAQ ========== */
   .faq{background:var(--white)}
-  .faq-grid{display:grid;gap:12px;max-width:760px;margin:0 auto}
-  .faq-item{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--cream)}
-  .faq-q{width:100%;text-align:left;padding:18px 22px;background:none;border:none;font-family:'Inter',sans-serif;font-weight:700;font-size:1rem;
-    color:var(--forest);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+  .faq-grid{display:grid;gap:14px;max-width:800px;margin:0 auto}
+  .faq-item{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--cream)}
+  .faq-q{width:100%;text-align:left;padding:22px 26px;background:none;border:none;font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem;color:var(--forest);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
   .faq-q:hover{background:var(--white)}
-  .faq-q .arrow{font-size:0.75rem;transition:transform .25s}
+  .faq-q .arrow{font-size:0.8rem;transition:transform .3s}
   .faq-item.open .faq-q .arrow{transform:rotate(180deg)}
-  .faq-a{padding:0 22px;max-height:0;overflow:hidden;transition:max-height .4s ease;color:var(--muted);font-size:0.95rem}
-  .faq-item.open .faq-a{padding:0 22px 18px;max-height:220px}
+  .faq-a{padding:0 26px;max-height:0;overflow:hidden;transition:max-height .45s ease;color:var(--muted);font-size:0.98rem}
+  .faq-item.open .faq-a{padding:0 26px 22px;max-height:260px}
 
-  /* ========== Contact / Newsletter ========== */
+  /* ========== Trust / Contact ========== */
   .contact{background:var(--cream-alt)}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px}
-  .contact-card{background:var(--white);border:1px solid var(--line);border-radius:26px;padding:36px}
-  .contact-card h3{font-size:1.4rem;margin-bottom:12px;color:var(--forest)}
-  .contact-card p{font-size:0.98rem;color:var(--muted);margin-bottom:22px}
-  .contact-card .detail{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px}
-  .contact-card .detail .ico{width:28px;color:var(--terracotta);font-weight:800;flex-shrink:0}
-  .newsletter{background:var(--forest);border-radius:26px;padding:36px;color:#fff}
-  .newsletter h3{font-size:1.4rem;margin-bottom:8px;color:#fff}
-  .newsletter p{color:rgba(255,255,255,0.85);margin-bottom:24px;font-size:0.98rem}
-  .newsletter form{display:flex;gap:10px;flex-wrap:wrap}
-  .newsletter input{flex:1;min-width:210px;padding:14px 18px;border-radius:12px;border:none;font-size:0.98rem}
-  .newsletter button{background:var(--terracotta);color:#fff;border:none;padding:14px 22px;border-radius:12px;font-weight:700;cursor:pointer}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+  .contact-card{background:var(--white);border:1px solid var(--line);border-radius:28px;padding:38px}
+  .contact-card h3{font-size:1.5rem;margin-bottom:14px;color:var(--forest)}
+  .contact-card p{font-size:1rem;color:var(--muted);margin-bottom:24px}
+  .contact-card .detail{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+  .contact-card .detail .ico{width:30px;color:var(--terracotta);font-weight:800;flex-shrink:0}
+  .trust{background:var(--forest);border-radius:28px;padding:38px;color:#fff;margin-top:0}
+  .trust h3{font-size:1.5rem;margin-bottom:8px;color:#fff}
+  .trust p{color:rgba(255,255,255,0.85);margin-bottom:22px;font-size:1rem}
+  .trust-list{list-style:none;display:grid;gap:12px}
+  .trust-list li{display:flex;align-items:center;gap:12px;font-size:0.98rem}
+  .trust-list li::before{content:'✔';color:var(--terracotta);font-weight:800;font-size:1.1rem}
+
+  /* ========== Newsletter ========== */
+  .newsletter{background:var(--forest);border-radius:28px;padding:38px;color:#fff}
+  .newsletter h3{font-size:1.5rem;margin-bottom:8px;color:#fff}
+  .newsletter p{color:rgba(255,255,255,0.85);margin-bottom:26px;font-size:1rem}
+  .newsletter form{display:flex;gap:12px;flex-wrap:wrap}
+  .newsletter input{flex:1;min-width:220px;padding:16px 20px;border-radius:14px;border:none;font-size:1rem}
+  .newsletter button{background:var(--terracotta);color:#fff;border:none;padding:16px 26px;border-radius:14px;font-weight:700;cursor:pointer}
   .newsletter button:hover{opacity:0.92}
-  .news-msg{margin-top:12px;font-size:0.88rem;color:rgba(255,255,255,0.9);min-height:22px}
+  .news-msg{margin-top:14px;font-size:0.9rem;color:rgba(255,255,255,0.9);min-height:24px}
 
   /* ========== Footer ========== */
-  footer{border-top:1px solid var(--line);padding:50px 0 34px;color:var(--muted);font-size:0.85rem;text-align:center}
-  .footer-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:26px;max-width:var(--maxw);margin:0 auto 34px;padding:0 24px}
-  .footer-col{flex:1;min-width:190px}
-  .footer-col .brand{font-size:1.25rem;margin-bottom:10px;display:block}
-  .footer-col p{line-height:1.75;margin-bottom:8px}
+  footer{border-top:1px solid var(--line);padding:52px 0 34px;color:var(--muted);font-size:0.88rem;text-align:center}
+  .footer-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;max-width:var(--maxw);margin:0 auto 36px;padding:0 24px}
+  .footer-col{flex:1;min-width:200px}
+  .footer-col .brand{font-size:1.3rem;margin-bottom:12px;display:block}
+  .footer-col p{line-height:1.8;margin-bottom:10px}
   .footer-col a{color:var(--muted)}
   .footer-col a:hover{color:var(--forest)}
-  .copy{border-top:1px solid var(--line);padding-top:22px}
+  .copy{border-top:1px solid var(--line);padding-top:24px}
 
   /* ========== Order status ========== */
-  #api-status{margin-top:14px;font-size:0.88rem;min-height:20px}
+  #api-status{margin-top:16px;font-size:0.9rem;min-height:22px}
 
   /* ========== Responsive ========== */
   @media (max-width:840px){
-    .hero .container,.acts,.demo-wrap,.contact-grid,.story-grid{grid-template-columns:1fr}
-    .hero h1{font-size:2.9rem}
+    .hero .container,.demo-wrap,.contact-grid,.acts{grid-template-columns:1fr}
+    .hero h1{font-size:3rem}
     .acts{grid-template-columns:1fr}
-    .act-img{height:260px}
-    .nav-list{display:none;position:absolute;left:0;right:0;top:100%;background:var(--white);border-bottom:1px solid var(--line);
-      padding:20px 24px;flex-direction:column;gap:14px;box-shadow:var(--shadow)}
+    .act-img{height:300px}
+    .nav-list{display:none;position:absolute;left:0;right:0;top:100%;background:var(--white);border-bottom:1px solid var(--line);padding:22px 24px;flex-direction:column;gap:16px;box-shadow:var(--shadow)}
     .nav-list.open{display:flex}
     .btn-mobile{display:block}
-    .hero-toy{position:static;transform:none;margin:24px auto 0}
-    .hero-chip{position:static;display:inline-block;margin-top:12px;transform:none}
-    .demo-wrap{grid-template-columns:1fr}
+    .hero-toy{position:static;transform:none;margin:28px auto 0}
+    .hero-chip{position:static;display:inline-block;margin-top:14px;transform:none}
+    .section-head h2{font-size:2.1rem}
+    .toy-wrap{width:320px;height:320px}
   }
   @media (max-width:560px){
-    .hero h1{font-size:2.3rem}
-    .section-head h2{font-size:2rem}
+    .hero h1{font-size:2.4rem}
+    .section-head h2{font-size:1.9rem}
     .order-row{flex-direction:column;align-items:stretch}
     .newsletter form{flex-direction:column}
-    .toy-wrap{width:300px;height:300px}
+    .toy-wrap{width:280px;height:280px}
+    .prod-slide{width:230px;height:230px}
   }
 </style>
 </head>
 <body>
-  <!-- SVG sprite: inline dog illustrations, always visible, no external dependency -->
+  <!-- SVG sprite: brand concept imagery, always visible, no external dependency -->
   <svg style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
     <symbol id="dog-sniff" viewBox="0 0 200 200">
       <defs>
         <linearGradient id="gFur" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F5F5DC"/><stop offset="100%" stop-color="#E6D8B8"/></linearGradient>
         <filter id="shad" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.12"/></filter>
       </defs>
-      <rect width="200" height="200" fill="var(--cream-alt)" rx="30"/>
-      <!-- dog body -->
+      <rect width="200" height="200" fill="#FBF9F4" rx="30"/>
       <path d="M60 130 Q50 140 70 160 L130 160 Q150 140 140 130 Q145 110 120 100 Q100 100 80 110 Q60 120 60 130 Z" fill="url(#gFur)" filter="url(#shad)"/>
-      <!-- head -->
       <circle cx="95" cy="95" r="32" fill="url(#gFur)" filter="url(#shad)"/>
-      <!-- ears -->
       <path d="M70 75 Q60 55 75 65 Q85 75 80 85 Z" fill="url(#gFur)"/>
       <path d="M120 75 Q130 55 115 65 Q105 75 110 85 Z" fill="url(#gFur)"/>
-      <!-- snout -->
       <ellipse cx="95" cy="108" rx="16" ry="12" fill="#F0E6D2"/>
       <circle cx="108" cy="105" r="6" fill="#3E2723"/>
-      <!-- eyes -->
       <circle cx="84" cy="88" r="4" fill="#3E2723"/>
       <circle cx="106" cy="88" r="4" fill="#3E2723"/>
-      <!-- nose sniffing line -->
       <path d="M85 125 Q95 135 105 125" stroke="#C0563A" stroke-width="3" fill="none" stroke-linecap="round"/>
     </symbol>
     <symbol id="dog-play" viewBox="0 0 200 200">
@@ -388,22 +366,16 @@
         <linearGradient id="gFur2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F5F5DC"/><stop offset="100%" stop-color="#E6D8B8"/></linearGradient>
         <filter id="shad2" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.12"/></filter>
       </defs>
-      <rect width="200" height="200" fill="var(--cream-alt)" rx="30"/>
-      <!-- tail -->
+      <rect width="200" height="200" fill="#FBF9F4" rx="30"/>
       <path d="M40 140 Q20 120 30 100 Q50 110 45 130" stroke="#D4C5A0" stroke-width="8" fill="none" stroke-linecap="round"/>
-      <!-- body -->
       <path d="M55 135 Q45 150 70 170 L130 170 Q145 150 135 135 Q130 110 100 110 Q70 110 55 135 Z" fill="url(#gFur2)" filter="url(#shad2)"/>
-      <!-- head -->
       <circle cx="85" cy="100" r="28" fill="url(#gFur2)" filter="url(#shad2)"/>
       <path d="M60 90 Q55 75 70 80 Q85 85 80 100 Z" fill="url(#gFur2)"/>
       <path d="M100 90 Q105 75 90 80 Q75 85 80 100 Z" fill="url(#gFur2)"/>
-      <!-- snout -->
       <ellipse cx="85" cy="108" rx="14" ry="10" fill="#F0E6D2"/>
       <circle cx="96" cy="106" r="5" fill="#3E2723"/>
-      <!-- eyes -->
       <circle cx="76" cy="94" r="3.5" fill="#3E2723"/>
       <circle cx="94" cy="94" r="3.5" fill="#3E2723"/>
-      <!-- paw -->
       <circle cx="115" cy="150" r="14" fill="#F0E6D2" filter="url(#shad2)"/>
       <circle cx="110" cy="146" r="4" fill="#D4C5A0"/>
       <circle cx="120" cy="146" r="4" fill="#D4C5A0"/>
@@ -414,22 +386,17 @@
         <linearGradient id="gFur3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F5F5DC"/><stop offset="100%" stop-color="#E6D8B8"/></linearGradient>
         <filter id="shad3" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.12"/></filter>
       </defs>
-      <rect width="200" height="200" fill="var(--cream-alt)" rx="30"/>
-      <!-- body -->
+      <rect width="200" height="200" fill="#FBF9F4" rx="30"/>
       <path d="M60 140 Q50 155 75 175 L125 175 Q150 155 140 140 Q135 120 110 115 Q85 115 60 140 Z" fill="url(#gFur3)" filter="url(#shad3)"/>
-      <!-- head -->
       <circle cx="95" cy="98" r="30" fill="url(#gFur3)" filter="url(#shad3)"/>
       <path d="M70 88 Q65 72 80 75 Q95 78 90 95 Z" fill="url(#gFur3)"/>
       <path d="M110 88 Q115 72 100 75 Q85 78 90 95 Z" fill="url(#gFur3)"/>
-      <!-- happy face -->
       <ellipse cx="95" cy="108" rx="15" ry="11" fill="#F0E6D2"/>
       <circle cx="105" cy="105" r="5" fill="#3E2723"/>
       <circle cx="84" cy="92" r="3.5" fill="#3E2723"/>
       <circle cx="106" cy="92" r="3.5" fill="#3E2723"/>
       <path d="M88 118 Q95 124 102 118" stroke="#C0563A" stroke-width="3" fill="none" stroke-linecap="round"/>
-      <!-- tongue -->
       <ellipse cx="95" cy="122" rx="8" ry="6" fill="#E57373"/>
-      <!-- treat -->
       <circle cx="135" cy="75" r="10" fill="#C0563A"/>
       <circle cx="132" cy="72" r="3" fill="#F0E6D2"/>
     </symbol>
@@ -439,19 +406,13 @@
         <filter id="shad4" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.12"/></filter>
       </defs>
       <rect width="200" height="200" fill="#DDE8D9" rx="30"/>
-      <!-- body -->
       <path d="M55 150 L55 170 Q55 180 65 180 L135 180 Q145 180 145 170 L145 150 Q145 130 100 130 Q55 130 55 150 Z" fill="url(#gFur4)" filter="url(#shad4)"/>
-      <!-- head resting on paws -->
       <circle cx="80" cy="115" r="24" fill="url(#gFur4)" filter="url(#shad4)"/>
-      <!-- sad eyes -->
       <path d="M70 110 Q72 113 70 116" stroke="#6B5B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
       <path d="M90 110 Q88 113 90 116" stroke="#6B5B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <!-- sad mouth -->
       <path d="M78 122 Q80 126 82 122" stroke="#6B5B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-      <!-- paws -->
       <rect x="60" y="160" width="22" height="12" rx="6" fill="#D4C5A0"/>
       <rect x="118" y="160" width="22" height="12" rx="6" fill="#D4C5A0"/>
-      <!-- bored zzz -->
       <text x="150" y="55" font-family="serif" font-size="24" fill="#9AAA9A">z</text>
       <text x="162" y="65" font-family="serif" font-size="20" fill="#9AAA9A">z</text>
       <text x="172" y="75" font-family="serif" font-size="16" fill="#9AAA9A">z</text>
@@ -461,17 +422,13 @@
         <linearGradient id="gFur5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#F5F5DC"/><stop offset="100%" stop-color="#E6D8B8"/></linearGradient>
         <filter id="shad5" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.12"/></filter>
       </defs>
-      <rect width="200" height="200" fill="var(--cream-alt)" rx="30"/>
-      <!-- body -->
+      <rect width="200" height="200" fill="#FBF9F4" rx="30"/>
       <path d="M50 145 Q40 160 60 175 L140 175 Q160 160 150 145 Q145 125 110 120 Q75 120 50 145 Z" fill="url(#gFur5)" filter="url(#shad5)"/>
-      <!-- head -->
       <circle cx="90" cy="100" r="26" fill="url(#gFur5)" filter="url(#shad5)"/>
       <path d="M68 92 Q64 78 78 82 Q90 85 88 98 Z" fill="url(#gFur5)"/>
       <path d="M102 92 Q106 78 92 82 Q80 85 88 98 Z" fill="url(#gFur5)"/>
-      <!-- treat in mouth -->
       <circle cx="105" cy="102" r="9" fill="#C0563A"/>
       <circle cx="102" cy="99" r="3" fill="#F0E6D2"/>
-      <!-- eyes -->
       <circle cx="80" cy="94" r="3" fill="#3E2723"/>
       <circle cx="100" cy="94" r="3" fill="#3E2723"/>
     </symbol>
@@ -509,8 +466,24 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="sticker dog-hero">
-        <svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-sniff"/></svg>
+      <div class="dog-hero concept-wrap">
+        <div class="concept-label">Brand concept imagery</div>
+        <div class="dog-scene">
+          <div class="concept-body"></div>
+          <div class="concept-leg l"></div>
+          <div class="concept-leg r"></div>
+          <div class="concept-head">
+            <div class="concept-ear l"></div>
+            <div class="concept-ear r"></div>
+            <div class="concept-snout"></div>
+            <div class="concept-nose"></div>
+            <div class="concept-eye l"></div>
+            <div class="concept-eye r"></div>
+            <div class="concept-happy-mouth"></div>
+          </div>
+          <div class="concept-tail"></div>
+          <div class="concept-treat"></div>
+        </div>
       </div>
       <div class="hero-toy">
         <div class="toy-wrap small" id="heroToy" aria-label="Pawloop modular toy">
@@ -541,30 +514,63 @@
     </div>
     <div class="acts">
       <div class="act act-1">
-        <div class="act-img sticker">
-          <svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-bored"/></svg>
+        <div class="act-img concept-wrap">
+          <div class="concept-label">Act I — The Problem</div>
+          <div class="dog-scene" style="width:88%;height:84%;left:50%;transform:translateX(-50%);bottom:6%">
+            <div class="concept-body"></div>
+            <div class="concept-leg l"></div>
+            <div class="concept-leg r"></div>
+            <div class="concept-head" style="top:-10%;left:42%;width:26%;height:28%">
+              <div class="concept-ear l"></div><div class="concept-ear r"></div>
+              <div class="concept-snout"></div><div class="concept-nose"></div>
+              <div class="concept-eye l"></div><div class="concept-eye r"></div>
+            </div>
+            <div class="concept-tail"></div>
+          </div>
         </div>
-        <div class="act-tag">Act I</div>
         <div class="act-body">
           <h3>The Problem</h3>
           <p>Dogs are natural hunters and problem-solvers. Without mental stimulation, boredom sets in — leading to anxiety, restlessness and destructive habits. A bowl of food is gone in seconds; a dog's mind stays hungry.</p>
         </div>
       </div>
       <div class="act act-2">
-        <div class="act-img sticker">
-          <svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-play"/></svg>
+        <div class="act-img concept-wrap">
+          <div class="concept-label">Act II — The Experience</div>
+          <div class="dog-scene" style="width:88%;height:84%;left:50%;transform:translateX(-50%);bottom:6%">
+            <div class="concept-body"></div>
+            <div class="concept-leg l"></div>
+            <div class="concept-leg r"></div>
+            <div class="concept-head" style="top:-10%;left:42%;width:26%;height:28%">
+              <div class="concept-ear l"></div><div class="concept-ear r"></div>
+              <div class="concept-snout"></div><div class="concept-nose"></div>
+              <div class="concept-eye l"></div><div class="concept-eye r"></div>
+            </div>
+            <div class="concept-tail"></div>
+            <div class="concept-treat"></div>
+          </div>
         </div>
-        <div class="act-tag">Act II</div>
         <div class="act-body">
           <h3>The Experience</h3>
           <p>Pawloop turns mealtime into a mission. Sniff out hidden scent, slide compartments to unlock treats, spin sections to reveal rewards — every play session engages the nose, the paws and the brain.</p>
         </div>
       </div>
       <div class="act act-3">
-        <div class="act-img sticker">
-          <svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-happy"/></svg>
+        <div class="act-img concept-wrap">
+          <div class="concept-label">Act III — The Reward</div>
+          <div class="dog-scene" style="width:88%;height:84%;left:50%;transform:translateX(-50%);bottom:6%">
+            <div class="concept-body"></div>
+            <div class="concept-leg l"></div>
+            <div class="concept-leg r"></div>
+            <div class="concept-head" style="top:-10%;left:42%;width:26%;height:28%">
+              <div class="concept-ear l"></div><div class="concept-ear r"></div>
+              <div class="concept-snout"></div><div class="concept-nose"></div>
+              <div class="concept-eye l"></div><div class="concept-eye r"></div>
+              <div class="concept-happy-mouth"></div>
+            </div>
+            <div class="concept-tail"></div>
+            <div class="concept-treat"></div>
+          </div>
         </div>
-        <div class="act-tag">Act III</div>
         <div class="act-body">
           <h3>The Reward</h3>
           <p>A satisfied, tired pup. Discovering hidden treats builds confidence, calms the mind and strengthens the bond between dog and owner. The hunt ends happy — and begins again.</p>
@@ -580,27 +586,25 @@
       <h2>The Toy</h2>
       <p>One modular base. Four interchangeable activities. Endless combinations.</p>
     </div>
-    <div style="display:flex;flex-wrap:wrap;gap:34px;align-items:center;justify-content:center">
-      <div style="flex:1;min-width:330px;max-width:420px">
-        <div class="toy-wrap" id="mainToy" aria-label="Pawloop modular toy">
-          <div class="toy-base"></div>
-          <div class="toy-center">PAWLOOP</div>
-          <div class="toy-module sniff" id="mSniff"><span class="treat"></span>👃</div>
-          <div class="toy-module slide" id="mSlide"><span class="treat"></span>🧩</div>
-          <div class="toy-module spin" id="mSpin"><span class="treat"></span>🔄</div>
-          <div class="toy-module discover" id="mDiscover"><span class="treat"></span>🎁</div>
-          <div class="toy-label" id="lmSniff">Sniffing</div>
-          <div class="toy-label" id="lmSlide">Sliding</div>
-          <div class="toy-label" id="lmSpin">Rotating</div>
-          <div class="toy-label" id="lmDiscover">Discovering</div>
-          <div class="toy-glow"></div>
-        </div>
+    <div class="prod-visual">
+      <div class="toy-wrap" id="mainToy" aria-label="Pawloop modular toy">
+        <div class="toy-base"></div>
+        <div class="toy-center">PAWLOOP</div>
+        <div class="toy-module sniff" id="mSniff"><span class="treat"></span>👃</div>
+        <div class="toy-module slide" id="mSlide"><span class="treat"></span>🧩</div>
+        <div class="toy-module spin" id="mSpin"><span class="treat"></span>🔄</div>
+        <div class="toy-module discover" id="mDiscover"><span class="treat"></span>🎁</div>
+        <div class="toy-label" id="lmSniff">Sniffing</div>
+        <div class="toy-label" id="lmSlide">Sliding</div>
+        <div class="toy-label" id="lmSpin">Rotating</div>
+        <div class="toy-label" id="lmDiscover">Discovering</div>
+        <div class="toy-glow"></div>
       </div>
       <div style="flex:1;min-width:300px">
-        <div class="prod-slide"><svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-sniff"/></svg><span class="label">Sniffing</span></div>
-        <div class="prod-slide"><svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-play"/></svg><span class="label">Sliding</span></div>
-        <div class="prod-slide"><svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-play"/></svg><span class="label">Rotating</span></div>
-        <div class="prod-slide"><svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-happy"/></svg><span class="label">Discovering</span></div>
+        <div class="prod-slide"><svg viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-sniff"/></svg><span class="label">Sniffing</span></div>
+        <div class="prod-slide"><svg viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-play"/></svg><span class="label">Sliding</span></div>
+        <div class="prod-slide"><svg viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-play"/></svg><span class="label">Rotating</span></div>
+        <div class="prod-slide"><svg viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-happy"/></svg><span class="label">Discovering</span></div>
       </div>
     </div>
     <div class="specs">
@@ -647,25 +651,25 @@
     <div class="steps">
       <div class="step">
         <div class="num">1</div>
-        <div class="sticker" style="width:110px;height:110px;margin:0 auto 12px"><svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-sniff"/></svg></div>
+        <div class="step-visual"><svg viewBox="0 0 200 200" style="width:80%;height:80%;display:block"><use href="#dog-sniff"/></svg></div>
         <h3>Load the treats</h3>
         <p>Hide kibble inside each module.</p>
       </div>
       <div class="step">
         <div class="num">2</div>
-        <div class="sticker" style="width:110px;height:110px;margin:0 auto 12px"><svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-play"/></svg></div>
+        <div class="step-visual"><svg viewBox="0 0 200 200" style="width:80%;height:80%;display:block"><use href="#dog-play"/></svg></div>
         <h3>Choose the mode</h3>
         <p>Sniff, slide, spin or discover.</p>
       </div>
       <div class="step">
         <div class="num">3</div>
-        <div class="sticker" style="width:110px;height:110px;margin:0 auto 12px"><svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-sniff"/></svg></div>
+        <div class="step-visual"><svg viewBox="0 0 200 200" style="width:80%;height:80%;display:block"><use href="#dog-sniff"/></svg></div>
         <h3>Let them hunt</h3>
         <p>Nudge, paw and nose the toy.</p>
       </div>
       <div class="step">
         <div class="num">4</div>
-        <div class="sticker" style="width:110px;height:110px;margin:0 auto 12px"><svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-happy"/></svg></div>
+        <div class="step-visual"><svg viewBox="0 0 200 200" style="width:80%;height:80%;display:block"><use href="#dog-happy"/></svg></div>
         <h3>Reward & repeat</h3>
         <p>Celebrate each discovery and swap modules.</p>
       </div>
@@ -756,8 +760,21 @@
         <div class="demo-note">The same modular toy you saw in the hero, the shop and the features — consistent design, every step of the way.</div>
       </div>
       <div>
-        <div class="demo-visual sticker">
-          <svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-play"/></svg>
+        <div class="demo-visual concept-wrap">
+          <div class="concept-label">Brand concept imagery</div>
+          <div class="dog-scene" style="width:94%;height:94%;left:50%;transform:translateX(-50%);bottom:3%">
+            <div class="concept-body"></div>
+            <div class="concept-leg l"></div>
+            <div class="concept-leg r"></div>
+            <div class="concept-head" style="top:-8%;left:44%;width:28%;height:30%">
+              <div class="concept-ear l"></div><div class="concept-ear r"></div>
+              <div class="concept-snout"></div><div class="concept-nose"></div>
+              <div class="concept-eye l"></div><div class="concept-eye r"></div>
+              <div class="concept-happy-mouth"></div>
+            </div>
+            <div class="concept-tail"></div>
+            <div class="concept-treat"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -772,8 +789,21 @@
       <p>Bring the endless hunt home.</p>
     </div>
     <div class="product-card">
-      <div class="thumb sticker">
-        <svg class="dog-img" viewBox="0 0 200 200" style="width:100%;height:100%;display:block"><use href="#dog-happy"/></svg>
+      <div class="thumb concept-wrap">
+        <div class="concept-label">Brand concept imagery</div>
+        <div class="dog-scene" style="width:94%;height:94%;left:50%;transform:translateX(-50%);bottom:3%">
+          <div class="concept-body"></div>
+          <div class="concept-leg l"></div>
+          <div class="concept-leg r"></div>
+          <div class="concept-head" style="top:-8%;left:44%;width:28%;height:30%">
+            <div class="concept-ear l"></div><div class="concept-ear r"></div>
+            <div class="concept-snout"></div><div class="concept-nose"></div>
+            <div class="concept-eye l"></div><div class="concept-eye r"></div>
+            <div class="concept-happy-mouth"></div>
+          </div>
+          <div class="concept-tail"></div>
+          <div class="concept-treat"></div>
+        </div>
         <span class="tag">Premium</span>
       </div>
       <div class="body">
@@ -817,8 +847,8 @@
         <div class="faq-a">Pawloop works for small, medium and large dogs. The weighted base stays stable for enthusiastic paws of all sizes.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Do you ship internationally? <span class="arrow">▼</span></button>
-        <div class="faq-a">We ship across India — doorstep delivery in most cities.</div>
+        <button class="faq-q" aria-expanded="false">Do you ship across India? <span class="arrow">▼</span></button>
+        <div class="faq-a">Yes. We ship door-to-door across most Indian cities with free shipping on orders over ₹999.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">What's your return policy? <span class="arrow">▼</span></button>
@@ -847,6 +877,17 @@
           <div><div style="font-weight:700;color:var(--ink)">Free shipping on orders over ₹999</div><div style="font-size:0.85rem;color:var(--muted)">Across India</div></div>
         </div>
       </div>
+      <div class="trust">
+        <h3>Transparent claims</h3>
+        <p>Premium materials, honest pricing, and a product built for real dogs.</p>
+        <ul class="trust-list">
+          <li>Food-safe, BPA-free materials</li>
+          <li>Dishwasher-safe modules</li>
+          <li>Weighted, non-tip base</li>
+          <li>30-day happiness guarantee</li>
+          <li>Designed with pet parents in mind</li>
+        </ul>
+      </div>
       <div class="newsletter">
         <h3>Join the pack</h3>
         <p>New arrivals, training tips and exclusive offers.</p>
@@ -863,7 +904,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-col">
-      <span class="brand" style="font-size:1.2rem">Paw<span class="mark">loop</span>.</span>
+      <span class="brand" style="font-size:1.3rem">Paw<span class="mark">loop</span>.</span>
       <p>Premium dog enrichment designed for curious noses and clever paws.</p>
     </div>
     <div class="footer-col">
@@ -883,16 +924,6 @@
 </footer>
 
 <script>
-  /* Reveal all images as they enter viewport */
-  document.querySelectorAll('img').forEach(img=>{
-    const obs=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){e.target.classList.add('loaded');obs.disconnect();}
-      });
-    });
-    obs.observe(img);
-  });
-
   /* Mobile menu */
   const menuBtn=document.getElementById('menuBtn');
   const navList=document.getElementById('navList');
@@ -915,7 +946,7 @@
     });
   });
 
-  /* Toy module interactivity (hero / main / feat / demo) */
+  /* Toy module interactivity */
   const toyConfigs=[
     {wrap:'heroToy',modules:['tSniff','tSlide','tSpin','tDiscover'],labels:['lblSniff','lblSlide','lblSpin','lblDiscover']},
     {wrap:'mainToy',modules:['mSniff','mSlide','mSpin','mDiscover'],labels:['lmSniff','lmSlide','lmSpin','lmDiscover']},
@@ -928,6 +959,7 @@
     const activeClass=()=>{
       wrap.querySelectorAll('.toy-module').forEach(m=>m.classList.remove('active'));
       wrap.classList.remove('active');
+      wrap.querySelectorAll('.toy-label').forEach(l=>l.style.opacity='0');
     };
     if(cfg.modules){
       cfg.modules.forEach((mid,i)=>{
@@ -956,7 +988,7 @@
     }
   });
 
-  /* Shop quantity */
+  /* Shop quantity + order */
   let qty=1;
   const qtyVal=document.getElementById('qtyVal');
   document.getElementById('qtyMinus').addEventListener('click',()=>{if(qty>1){qty--;qtyVal.textContent=qty;}});
@@ -968,7 +1000,7 @@
     try{
       const res=await fetch('/api/order',{
         method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({product:'Pawloop Enrichment Toy',quantity:qty,amount:4900*qty})
+        body:JSON.stringify({product:'Pawloop Enrichment Toy',quantity:qty,amount:4900*qty,currency:'INR'})
       });
       const data=await res.json();
       if(res.ok){apiStatus.style.color='#2e7d32';apiStatus.textContent=data.message||'Order placed!';addBtn.textContent='Ordered';}
